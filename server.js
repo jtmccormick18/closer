@@ -12,6 +12,8 @@ app.use(express.json());
 
 const db = require('./models');
 
+require('./routes/api-routes')(app);
+
 
 // Start the API server
 db.sequelize.sync().then(function() {

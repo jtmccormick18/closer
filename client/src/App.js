@@ -10,6 +10,18 @@ class App extends React.Component {
     newNote: '',
     isUpdating:false
   }
+  componentDidMount(){
+    this.getUsers();
+  }
+  getUsers=()=>{
+    $.get('/api/users')
+    .then(result=>{
+      console.log(result.data)
+    })
+  }
+  render(){
+    return (<div></div>)
+  }
 
   
 
