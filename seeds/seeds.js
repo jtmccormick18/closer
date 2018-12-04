@@ -2,7 +2,8 @@ const db = require('../models');
 
 // Syncing our sequelize models 
 // =============================================================
-db.sequelize.sync({ force: true }).then(function () {
+db.sequelize.sync({ force: true })
+.then(function () {
     db.User.bulkCreate([{
         username: 'JT',
         password: '123',
@@ -31,7 +32,8 @@ db.sequelize.sync({ force: true }).then(function () {
         password: '123',
         email: 'Alex@gmail.com',
         airport: 'SFO'
-    }], { individualHooks: true }).then(function (response) {
+    }], { individualHooks: true })
+    .then(function (response) {
         db.Partner.bulkCreate([{
             UserId: 1,
             name: 'SidePiece',
@@ -58,6 +60,7 @@ db.sequelize.sync({ force: true }).then(function () {
         }
         ]).then(function (response) {
             db.Trip.bulkCreate([{
+                UserId: 1,
                 destination_city: 'Los Angeles',
                 destination_airport: 'LAX',
                 date_leaving: '09/15/2019',
@@ -67,8 +70,9 @@ db.sequelize.sync({ force: true }).then(function () {
             }])
         })
     })
-}).then(function (data) {
-    console.log('Data successfully added!');
-}).catch(function (error) {
-    console.log('Error', error)
-})
+            .then(function (data) {
+                console.log('Data successfully added!');
+            }).catch(function (error) {
+                console.log('Error', error)
+            })
+    })
