@@ -23,4 +23,12 @@ module.exports = function (app) {
             res.json(err);
         })
     })
+    app.post('api/partners/:id',function(req,res){
+        db.Partner.update(req.body)
+        .then(success=>{
+            res.json(success)
+        }).catch(err=>{
+            res.json(err)
+        })
+    })
 }
