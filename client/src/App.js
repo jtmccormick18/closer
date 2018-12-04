@@ -1,19 +1,18 @@
-import React, { Component } from 'react';
-import * as $ from 'axios';
-
-
+import React, { Component } from "react";
+import * as $ from "axios";
+import Button from "@material-ui/core/Button";
 
 class App extends React.Component {
-
   state = {
     notesList: [],
-    newNote: '',
-    isUpdating:false
+    newNote: "",
+    isUpdating: false
+  };
+  render() {
+    return (
+      <Button color="primary" variant="contained">Testing!!!</Button>
+    );
   }
-
-  
-
- 
 }
 
 export default App;
