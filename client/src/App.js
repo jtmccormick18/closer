@@ -1,34 +1,28 @@
 import React, { Component } from "react";
 import * as $ from "axios";
-import Button from "@material-ui/core/Button";
+import AppBar from "./components/AppBar";
 
 class App extends React.Component {
   state = {
-    notesList: [],
+    userList: [],
     newNote: "",
     isUpdating: false
   };
-  render() {
-    return (
-      <Button color="primary" variant="contained">Testing!!!</Button>
-    );
-  }
-  componentDidMount(){
+
+  componentDidMount() {
     this.getUsers();
-  }
-  getUsers=()=>{
-    $.get('/api/users')
-    .then(result=>{
-      console.log(result.data)
+    this.setState({
+      userList: this.getUsers()
     })
   }
-  render(){
-    return (<div></div>)
+  getUsers = () => {
+    $.get("/api/users").then(result => {
+      console.log(result.data);
+    });
+  };
+  render() {
+    return <AppBar />;
   }
-
-  
-
- 
 }
 
 export default App;
