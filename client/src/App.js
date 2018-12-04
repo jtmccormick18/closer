@@ -13,6 +13,22 @@ class App extends React.Component {
       <Button color="primary" variant="contained">Testing!!!</Button>
     );
   }
+  componentDidMount(){
+    this.getUsers();
+  }
+  getUsers=()=>{
+    $.get('/api/users')
+    .then(result=>{
+      console.log(result.data)
+    })
+  }
+  render(){
+    return (<div></div>)
+  }
+
+  
+
+ 
 }
 
 export default App;
