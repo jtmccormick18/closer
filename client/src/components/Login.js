@@ -16,7 +16,7 @@ const Form = props => (
       onChange={props.handleChange}
     />
     <button type="submit" onClick={props.submitUser}>
-      Create Account
+      Login
     </button>
   </form>
 );
@@ -44,8 +44,9 @@ class Login extends React.Component {
     $.post("/login", userData)
       .then(resp => {
         console.log(resp);
-        alert("Login Successgul!");
+        alert("Login Successful!");
         this.setState({loggedIn:true})
+        localStorage.token=resp.data.token;
       })
       .catch(err=>{
         alert('Username or Password is incorrect')
