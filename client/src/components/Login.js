@@ -35,7 +35,7 @@ class Login extends React.Component {
       [e.target.name]: e.target.value
     });
   };
-  createUser = e => {
+  loginUser = e => {
     e.preventDefault();
     const userData = {
       username: this.state.username,
@@ -57,7 +57,7 @@ class Login extends React.Component {
         handleChange={this.handleChange}
         userVal={this.state.username}
         passVal={this.state.password}
-        submitUser={this.createUser}
+        submitUser={this.loginUser}
       />
     );
   }
