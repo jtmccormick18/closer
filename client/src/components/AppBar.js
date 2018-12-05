@@ -53,11 +53,11 @@ function ButtonAppBar(props) {
         </div>
       </BrowserRouter>
     </div>
-  );
+  )
 }
 
 ButtonAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
-};
+}
 
 export default withStyles(styles)(ButtonAppBar);

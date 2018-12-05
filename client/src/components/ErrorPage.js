@@ -16,7 +16,7 @@ class ErrorPage extends React.Component {
         return (
             <Error
             />
-        );
+        )
     }
 }
 
