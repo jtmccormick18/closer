@@ -10,7 +10,7 @@ const Form = props => (
       onChange={props.handleChange}
     />
     <input
-      type="text"
+      type="password"
       name="password"
       value={props.passVal}
       onChange={props.handleChange}
