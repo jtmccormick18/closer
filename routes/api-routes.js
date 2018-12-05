@@ -32,7 +32,14 @@ module.exports = function (app) {
         })
     })
     app.post('/api/users',function(req,res){
-        db.User.create(req.body)
+        db.User.create({
+            username: req.body.username,
+            password: req.body.password,
+            nickname: req.body.nickname,
+            budget: req.body.budget,
+            email: req.body.email,
+            airport: req.body.airpot
+        })
         .then(success=>{
             res.json(success)
         }).catch(err=>{
