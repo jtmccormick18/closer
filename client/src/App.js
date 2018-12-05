@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import * as $ from "axios";
 import AppBar from "./components/AppBar";
-import AccountCreate from "./components/CreateAccount"
 
 class App extends React.Component {
   state = {
@@ -23,7 +22,7 @@ class App extends React.Component {
   };
   render() {
     return <div><AppBar />;
-    <AccountCreate /></div>
+    </div>
 
   }
 }

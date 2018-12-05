@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
 import AccountCreate from './CreateAccount';
+import Login from './Login';
 // import MenuIcon from '@material-ui/icons/Menu';
 
 const styles = {
@@ -31,13 +32,13 @@ function ButtonAppBar(props) {
         <div>
           <AppBar position="static">
             <Toolbar>
-              <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-                <img alt="closerLogo" src="././assets/clsr.logo.png" height="40px" />
-              </IconButton>
+              <Link to='/'><IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+                <img alt="closerLogo" src="././assets/clsr.logo.png" height="40px" /></IconButton>
+              </Link>
               <Typography variant="h6" color="inherit" className={classes.grow}>
                 Closer
           </Typography>
-              <Button color="inherit">Login</Button>
+              <Link to='/login'><Button color="inherit">Login</Button></Link>
               <Link to="/register"><Button color="inherit">Register</Button></Link>
             </Toolbar>
           </AppBar>
@@ -45,6 +46,7 @@ function ButtonAppBar(props) {
           <Switch>
             <Route exact path='/' component={AppBar} />
             <Route exact path='/register' component={AccountCreate} />
+            <Route exact path='/login' component={Login} />
           </Switch>
         </div>
       </BrowserRouter>
