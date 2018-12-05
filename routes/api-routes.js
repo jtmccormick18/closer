@@ -23,13 +23,30 @@ module.exports = function (app) {
             res.json(err);
         })
     })
-    app.post('api/partners/:id',function(req,res){
-        db.Partner.update(req.body)
+    app.post('/api/partners/:id',function(req,res){
+        db.Partner.create(req.body)
         .then(success=>{
             res.json(success)
         }).catch(err=>{
             res.json(err)
         })
     })
+    app.post('/api/users',function(req,res){
+        db.User.create(req.body)
+        .then(success=>{
+            res.json(success)
+        }).catch(err=>{
+            res.json(err);
+        })
+    })
+    app.post('/api/trips',function(req,res){
+        db.Trip.create(req.body)
+        .then(success=>{
+            res.json(success)
+        }).catch(err=>{
+            res.json(err);
+        })
+    });
+
     //Git Relay
 }

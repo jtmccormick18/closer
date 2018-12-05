@@ -5,19 +5,19 @@ import AppBar from "./components/AppBar";
 class App extends React.Component {
   state = {
     userList: [],
-    newNote: "",
-    isUpdating: false
+    isCreatingAccount: false,
+    isLoggedIn: false
   };
 
   componentDidMount() {
     this.getUsers();
-    this.setState({
-      userList: this.getUsers()
-    })
   }
   getUsers = () => {
     $.get("/api/users").then(result => {
       console.log(result.data);
+      this.setState({
+        userList: result.data
+      })
     });
   };
   render() {
