@@ -1,6 +1,4 @@
-body {
-    color: #b4ecb4;
-}
+
 
 .MuiToolbar-root-40 {
     background-color: lightgray;
@@ -8,4 +6,11 @@ body {
 
 .MuiTypography-root-53{
     font-family: 'Satisfy', cursive;
+}
+
+.createAccountForm {
+    background-color: lightgray;
+    margin-top: 20px;
+    width: 50%;
+    padding: 10px;
 }
