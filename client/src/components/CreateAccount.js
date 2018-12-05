@@ -1,48 +1,71 @@
 import React from "react";
 import * as $ from "axios";
+import MenuItem from '@material-ui/core/MenuItem';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
 const Form = props => (
-  <form>
+  <Grid container justify="center">
+  <form className="createAccountForm" >
+  <Typography align="center" variant="h4" color="inherit">
+            Create an Account
+          </Typography>
+          <hr/>
+    <MenuItem>
+    Name:
     <input
       type="text"
       name="username"
       value={props.userVal}
       onChange={props.handleChange}
+   
     />
+    </MenuItem>
+    <MenuItem>
+    Password:
     <input
       type="password"
       name="password"
       value={props.passVal}
       onChange={props.handleChange}
-    />
+    /> </MenuItem>
+    <MenuItem>
+    Nickname:
     <input
       type="text"
       name="nickname"
       value={props.nickVal}
       onChange={props.handleChange}
-    />
+    /></MenuItem> <MenuItem>
+    Airport:
     <input
       type="text"
       name="airport"
       value={props.airVal}
       onChange={props.handleChange}
-    />
+    /></MenuItem> 
+    <MenuItem>
+    Email:
     <input
       type="text"
       name="email"
       value={props.eVal}
       onChange={props.handleChange}
-    />
+    /></MenuItem>
+    <MenuItem>
+    Budget:
     <input
       type="text"
       name="budget"
       value={props.budgetVal}
       onChange={props.handleChange}
-    />
-    <button type="submit" onClick={props.submitUser}>
+    /></MenuItem>
+    <Button aligntItem="center" type="submit" onClick={props.submitUser}>
       Create Account
-    </button>
+    </Button>
   </form>
+  </Grid>
 );
 
 class AccountCreate extends React.Component {

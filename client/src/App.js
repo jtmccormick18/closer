@@ -21,10 +21,9 @@ class App extends React.Component {
     });
   };
   render() {
-    return <div><AppBar />;
+    return <div><AppBar />
     </div>
 
   }
 }
-
 export default App;
