@@ -1,5 +1,7 @@
 const db = require('../models');
 const jwt=require('jsonwebtoken');
+const authentication = require('../middleware/authentication');
+
 module.exports = function (app) {
     // Retrieving All Users
     app.get('/api/users', function (req, res) {
@@ -8,7 +10,7 @@ module.exports = function (app) {
         })
     })
     // Getting the user's home page after login
-    app.get('/api/users/:id', function (req, res) {
+    app.get('/api/users/:id', authentication, function (req, res) {
         db.User.find({
             where: {
                 id:req.params.id
@@ -27,7 +29,7 @@ module.exports = function (app) {
         })
     })
     // Allowing Partner Adding
-    app.post('/api/partners/:id',function(req,res){
+    app.post('/api/partners/:id', authentication, function(req,res){
         db.Partner.create(req.body)
         .then(success=>{
             res.json(success)
@@ -86,7 +88,7 @@ module.exports = function (app) {
         });
     });
     // Creating a trip
-    app.post('/api/trips',function(req,res){
+    app.post('/api/trips', authentication, function(req,res){
         db.Trip.create(req.body)
         .then(success=>{
             res.json(success)
