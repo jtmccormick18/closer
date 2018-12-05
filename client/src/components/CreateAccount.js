@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import * as $ from "axios";
 
 const Form = props => (
@@ -67,22 +67,20 @@ class AccountCreate extends React.Component {
     const userData = {
       username: this.state.username,
       password: this.state.password,
-      nicname: this.state.nickname,
+      nickname: this.state.nickname,
       airport: this.state.airport,
       email: this.state.email,
       budget: this.state.budget
     };
     console.log(userData)
     $.post("/api/users", userData)
-      .then((resp, err) => {
-        if (resp){
-        console.log(resp);
-        alert("Thanks for Creating an account, Please Login to continue.");
-        } else if (err) {
-          alert("Do it correctly")
-        }
-        
-      });
+    .then(resp => {
+      console.log(resp);
+      alert("Thanks for Creating an account, Please Login to continue.");
+    })
+    .catch(err=>{
+      alert('Fill out the entire form!')
+    })
   };
   render() {
     return (
