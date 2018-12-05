@@ -9,6 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
 import AccountCreate from './CreateAccount';
 import Login from './Login';
+import ErrorPage from './ErrorPage';
 // import MenuIcon from '@material-ui/icons/Menu';
 
 const styles = {
@@ -47,6 +48,7 @@ function ButtonAppBar(props) {
             <Route exact path='/' component={AppBar} />
             <Route exact path='/register' component={AccountCreate} />
             <Route exact path='/login' component={Login} />
+            <Route path='*' component ={ErrorPage}/>
           </Switch>
         </div>
       </BrowserRouter>

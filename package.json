@@ -20,6 +20,7 @@
     "nodemon": "^1.11.0"
   },
   "dependencies": {
+    "@turf/midpoint": "^5.1.5",
     "axios": "^0.16.2",
     "bcryptjs": "^2.4.3",
     "dotenv": "^6.1.0",
