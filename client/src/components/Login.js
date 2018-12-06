@@ -25,10 +25,10 @@ class Login extends React.Component {
   state = {
     username: "",
     password: "",
-    loggedIn:false
+    loggedIn: false
   };
 
-  componentDidMount() {}
+  componentDidMount() { }
   handleChange = e => {
     e.preventDefault();
     this.setState({
@@ -48,7 +48,7 @@ class Login extends React.Component {
         localStorage.token=resp.data.token;
         localStorage.clsr_id=resp.data.id;
       })
-      .catch(err=>{
+      .catch(err => {
         alert('Username or Password is incorrect')
       })
   };
