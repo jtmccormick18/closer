@@ -1,6 +1,25 @@
-import React, { Component } from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 import * as $ from "axios";
-import AppBar from "./components/AppBar";
+import { AppBar, Toolbar, Typography, Button, IconButton, withStyles } from '@material-ui/core';
+import { BrowserRouter, Route, Link, Switch, NavLink } from "react-router-dom";
+import AccountCreate from './components/CreateAccount';
+import Login from './components/Login';
+import ErrorPage from './components/ErrorPage';
+// import MenuIcon from '@material-ui/icons/Menu';
+
+const styles = {
+  root: {
+    flexGrow: 1,
+  },
+  grow: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20,
+  },
+};
 
 class App extends React.Component {
   state = {
@@ -12,6 +31,7 @@ class App extends React.Component {
   componentDidMount() {
     this.getUsers();
   }
+
   getUsers = () => {
     $.get("/api/users").then(result => {
       console.log(result.data);
@@ -20,10 +40,42 @@ class App extends React.Component {
       })
     });
   };
-  render() {
-    return <div><AppBar />
-    </div>
 
+  render() {
+    const { classes } = this.props;
+    return (
+      <div className={classes.root}>
+        <BrowserRouter>
+          <div>
+            <AppBar position="static">
+              <Toolbar>
+                <Link to='/'><IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+                  <img alt="closerLogo" src="././assets/clsr.logo.png" height="40px" /></IconButton>
+                </Link>
+                <Typography variant="h6" color="inherit" className={`${classes.grow} ${classes.title}`}>
+                  Closer
+              </Typography>
+                <NavLink to='/login'><Button color="inherit">Login</Button></NavLink>
+                <NavLink to="/register"><Button color="inherit">Register</Button></NavLink>
+              </Toolbar>
+            </AppBar>
+
+            <Switch>
+              <Route exact path='/' component={AppBar} />
+              <Route exact path='/register' component={AccountCreate} />
+              <Route exact path='/login' component={Login} />
+              <Route path='*' component={ErrorPage} />
+            </Switch>
+          </div>
+        </BrowserRouter>
+      </div>
+    )
   }
+
 }
-export default App;
+
+App.propTypes = {
+  classes: PropTypes.object.isRequired,
+}
+
+export default withStyles(styles)(App);
