@@ -46,7 +46,7 @@ module.exports = function (app) {
             nickname: req.body.nickname,
             budget: req.body.budget,
             email: req.body.email,
-            airport: req.body.airpot
+            airport: req.body.airport
         })
         .then(success=>{
             res.json(success)
