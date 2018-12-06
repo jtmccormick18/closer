@@ -14,3 +14,12 @@
     width: 50%;
     padding: 10px;
 }
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+a:hover {
+    text-decoration:none;
+}
