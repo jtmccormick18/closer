@@ -45,6 +45,7 @@ function ButtonAppBar(props) {
               <Link to="/map"><Button color="inherit">Map</Button></Link>
             </Toolbar>
           </AppBar>
+          <MidPoint/>
 
           <Switch>
             <Route exact path='/' component={AppBar} />

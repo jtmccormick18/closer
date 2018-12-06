@@ -36,22 +36,6 @@ const Form = props => (
       <MenuItem>
       <span className="menuLabel">Nickname:</span>
     <input
-<<<<<<< HEAD
-          type="text"
-          name="nickname"
-          value={props.nickVal}
-          onChange={props.handleChange}
-        /></MenuItem> <MenuItem>
-        Airport:
-    <input
-          type="text"
-          name="airport"
-          value={props.airVal}
-          onChange={props.handleChange}
-        /></MenuItem>
-      <MenuItem>
-        Email:
-=======
       className="menuitem"
       type="text"
       name="nickname"
@@ -61,7 +45,6 @@ const Form = props => (
   
     <MenuItem>
     <span className="menuLabel">Email</span>
->>>>>>> 59c9953bd068389e8ac571230e11ee9f6cfd7fdb
     <input
           className="menuitem"
           type="text"
@@ -72,10 +55,7 @@ const Form = props => (
       <MenuItem>
       <span className="menuLabel">Budget:</span>
     <input
-<<<<<<< HEAD
-=======
       className="menuitem"
->>>>>>> 59c9953bd068389e8ac571230e11ee9f6cfd7fdb
       type="text"
       name="budget"
       value={props.budgetVal}
@@ -102,13 +82,9 @@ class AccountCreate extends React.Component {
   };
 
   componentDidMount() {}
-<<<<<<< HEAD
-  handleChange = (e) => {
-=======
   handleChange = (e, values) => {
     values = e.target.name ? e.target : values;
     const {name, value} = values;
->>>>>>> 59c9953bd068389e8ac571230e11ee9f6cfd7fdb
     this.setState({
       [name]: value
     });
