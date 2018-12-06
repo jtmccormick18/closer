@@ -4,6 +4,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Airport from "./Airport";
 
 const Form = props => (
   <Grid container justify="center">
@@ -107,16 +108,19 @@ class AccountCreate extends React.Component {
   };
   render() {
     return (
-      <Form
-        handleChange={this.handleChange}
-        userVal={this.state.username}
-        passVal={this.state.password}
-        nickVal={this.state.nickname}
-        airVal={this.state.airport}
-        budgetVal={this.state.budget}
-        eVal={this.state.email}
-        submitUser={this.createUser}
-      />
+      <div>
+        
+        <Form
+          handleChange={this.handleChange}
+          userVal={this.state.username}
+          passVal={this.state.password}
+          nickVal={this.state.nickname}
+          airVal={this.state.airport}
+          budgetVal={this.state.budget}
+          eVal={this.state.email}
+          submitUser={this.createUser}
+        />
+      </div>
     );
   }
 }
