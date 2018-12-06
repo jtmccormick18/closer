@@ -1,6 +1,7 @@
 // @flow
-import turf from '@turf/turf';
-import React, { Component,Fragment } from 'react';
+import * as turf from '@turf/turf';
+import React, { Component, Fragment } from 'react';
+import * as $ from 'axios';
 // import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 // import L from 'leaflet';
 // import nearbyCities from 'nearby-cities';
@@ -26,19 +27,19 @@ import React, { Component,Fragment } from 'react';
 //   ))
 //   return <Fragment>{items}</Fragment>
 // }
-const DisplayCities=(props)=>(
+const DisplayCities = (props) => (
   <div>
-    <p>{props.midpoint}</p>
-   
+    <p>Long: {props.long}</p>
+    <p>Lat: {props.lat}</p>
   </div>
 )
 
 class MidPoint extends React.Component {
   state = {
-    pointA: [41.881832,-87.623177],
-    pointB:[33.753746,-84.386330],
-    midpoint:[],
-    nearbyCities:[]
+    pointA:[],
+    pointB:[],
+    midpoint: [],
+    nearbyCities: []
   };
 
   handleChange = e => {
@@ -47,15 +48,24 @@ class MidPoint extends React.Component {
       [e.target.name]: e.target.value
     });
   };
-  getMidPoint=() => {
-    // let point1=turf.point(this.state.pointA);
-    // let point2=turf.pointthis.state.pointB;
-    let midpoint = turf.midpoint(this.state.pointA, this.state.pointB);
-    // let cities=nearbyCities(midpoint);
-    this.setState({
-      midpoint:midpoint
-    })
-    console.log(this.state);
+  getMidPoint = () => {
+    $.get(`/airports/${localStorage.clsr_id}`)
+      .then(resp => {
+        console.log(resp);
+        let userLat=parseFloat(resp.data[0][0].LAT1);
+        let userLong=parseFloat(resp.data[0][0].LONG1)
+        let partLat=parseFloat(resp.data[0][0].LAT2);
+        let partLong=parseFloat(resp.data[0][0].LONG2)
+        let point1 = turf.point([userLat, userLong]);
+        let point2 = turf.point([partLat, partLong]);
+        let midpoint = turf.midpoint(point1, point2);
+        this.setState({
+          pointA:[userLat,userLong],
+          pointB:[partLat,partLong],
+          midpoint: midpoint.geometry.coordinates
+        })
+        console.log(this.state);
+      })
   }
 
   loadMap(domNode) {
@@ -67,7 +77,7 @@ class MidPoint extends React.Component {
 
   render() {
     return (
-      <DisplayCities midpoint={this.state.midpoint} />
+      <DisplayCities long={this.state.midpoint[1]} lat={this.state.midpoint[0]} />
     )
   }
 }

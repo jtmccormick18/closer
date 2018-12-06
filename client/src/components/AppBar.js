@@ -9,7 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
 import AccountCreate from './CreateAccount';
 import Login from './Login';
-import MidPoint from './MidPoint';
+import MidPoint from './ResultsPage/MidPoint';
 import ErrorPage from './ErrorPage';
 // import MenuIcon from '@material-ui/icons/Menu';
 
@@ -45,7 +45,6 @@ function ButtonAppBar(props) {
               <Link to="/map"><Button color="inherit">Map</Button></Link>
             </Toolbar>
           </AppBar>
-          <MidPoint/>
 
           <Switch>
             <Route exact path='/' component={AppBar} />
