@@ -4,6 +4,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Airport from "./Airport";
 
 const Form = props => (
   <Grid container justify="center">
@@ -13,8 +14,9 @@ const Form = props => (
           </Typography>
       <hr />
       <MenuItem>
-        Name:
+        <span className="menuLabel">Username:</span>
     <input
+          className="menuitem"
           type="text"
           name="username"
           value={props.userVal}
@@ -23,15 +25,16 @@ const Form = props => (
         />
       </MenuItem>
       <MenuItem>
-        Password:
+      <span className="menuLabel">Password:</span>
     <input
+          className="menuitem"
           type="password"
           name="password"
           value={props.passVal}
           onChange={props.handleChange}
         /> </MenuItem>
       <MenuItem>
-        Nickname:
+      <span className="menuLabel">Nickname:</span>
     <input
           type="text"
           name="nickname"
@@ -48,22 +51,27 @@ const Form = props => (
       <MenuItem>
         Email:
     <input
+          className="menuitem"
           type="text"
           name="email"
           value={props.eVal}
           onChange={props.handleChange}
         /></MenuItem>
       <MenuItem>
-        Budget:
+      <span className="menuLabel">Budget:</span>
     <input
-          type="text"
-          name="budget"
-          value={props.budgetVal}
-          onChange={props.handleChange}
-        /></MenuItem>
-      <Button aligntItem="center" type="submit" onClick={props.submitUser}>
-        Create Account
+      className="menuitem"
+      type="text"
+      name="budget"
+      value={props.budgetVal}
+      onChange={props.handleChange}
+    /></MenuItem>
+    <Airport onChange={props.handleChange} currAirport={props.airVal} />
+    <div className="buttonbox">
+    <Button align="center" type="submit" onClick={props.submitUser}>
+      Create Account
     </Button>
+    </div>
     </form>
   </Grid>
 );
@@ -78,13 +86,15 @@ class AccountCreate extends React.Component {
     budget: ""
   };
 
-  componentDidMount() { }
-  handleChange = e => {
-    e.preventDefault();
+  componentDidMount() {}
+  handleChange = (e, values) => {
+    values = e.target.name ? e.target : values;
+    const {name, value} = values;
     this.setState({
-      [e.target.name]: e.target.value
+      [name]: value
     });
   };
+
   createUser = e => {
     e.preventDefault();
     const userData = {
@@ -105,18 +115,22 @@ class AccountCreate extends React.Component {
         alert('Fill out the entire form!')
       })
   };
+
   render() {
     return (
-      <Form
-        handleChange={this.handleChange}
-        userVal={this.state.username}
-        passVal={this.state.password}
-        nickVal={this.state.nickname}
-        airVal={this.state.airport}
-        budgetVal={this.state.budget}
-        eVal={this.state.email}
-        submitUser={this.createUser}
-      />
+      <div>
+        
+        <Form
+          handleChange={this.handleChange}
+          userVal={this.state.username}
+          passVal={this.state.password}
+          nickVal={this.state.nickname}
+          airVal={this.state.airport}
+          budgetVal={this.state.budget}
+          eVal={this.state.email}
+          submitUser={this.createUser}
+        />
+      </div>
     );
   }
 }
