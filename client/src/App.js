@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import * as $ from "axios";
 import AppBar from "./components/AppBar";
+import Flight from './components/Flight'
 
 class App extends React.Component {
   state = {
@@ -21,8 +22,10 @@ class App extends React.Component {
     });
   };
   render() {
-    return <div><AppBar />
-    </div>
+    return (<div>
+      <AppBar />
+      <Flight />
+    </div>)
 
   }
 }
