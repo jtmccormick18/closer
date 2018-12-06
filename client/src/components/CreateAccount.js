@@ -4,6 +4,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Airport from "./Airport";
 
 const Form = props => (
   <Grid container justify="center">
@@ -33,6 +34,7 @@ const Form = props => (
       <MenuItem>
         Nickname:
     <input
+<<<<<<< Updated upstream
           type="text"
           name="nickname"
           value={props.nickVal}
@@ -47,6 +49,16 @@ const Form = props => (
         /></MenuItem>
       <MenuItem>
         Email:
+=======
+      type="text"
+      name="nickname"
+      value={props.nickVal}
+      onChange={props.handleChange}
+    /></MenuItem> 
+  
+    <MenuItem>
+    Email:
+>>>>>>> Stashed changes
     <input
           type="text"
           name="email"
@@ -56,6 +68,7 @@ const Form = props => (
       <MenuItem>
         Budget:
     <input
+<<<<<<< Updated upstream
           type="text"
           name="budget"
           value={props.budgetVal}
@@ -63,6 +76,16 @@ const Form = props => (
         /></MenuItem>
       <Button aligntItem="center" type="submit" onClick={props.submitUser}>
         Create Account
+=======
+      type="text"
+      name="budget"
+      value={props.budgetVal}
+      onChange={props.handleChange}
+    /></MenuItem>
+    <Airport value={props.value} onChange={props.handleChange}/>
+    <Button align="center" type="submit" onClick={props.submitUser}>
+      Create Account
+>>>>>>> Stashed changes
     </Button>
     </form>
   </Grid>
@@ -78,9 +101,14 @@ class AccountCreate extends React.Component {
     budget: ""
   };
 
+<<<<<<< Updated upstream
   componentDidMount() { }
   handleChange = e => {
     e.preventDefault();
+=======
+  componentDidMount() {}
+  handleChange = (e) => {
+>>>>>>> Stashed changes
     this.setState({
       [e.target.name]: e.target.value
     });
@@ -107,16 +135,19 @@ class AccountCreate extends React.Component {
   };
   render() {
     return (
-      <Form
-        handleChange={this.handleChange}
-        userVal={this.state.username}
-        passVal={this.state.password}
-        nickVal={this.state.nickname}
-        airVal={this.state.airport}
-        budgetVal={this.state.budget}
-        eVal={this.state.email}
-        submitUser={this.createUser}
-      />
+      <div>
+        
+        <Form
+          handleChange={this.handleChange}
+          userVal={this.state.username}
+          passVal={this.state.password}
+          nickVal={this.state.nickname}
+          airVal={this.state.airport}
+          budgetVal={this.state.budget}
+          eVal={this.state.email}
+          submitUser={this.createUser}
+        />
+      </div>
     );
   }
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as $ from "axios";
+<<<<<<< Updated upstream
 import { AppBar, Toolbar, Typography, Button, IconButton, withStyles } from '@material-ui/core';
 import { BrowserRouter, Route, Link, Switch, NavLink } from "react-router-dom";
 import AccountCreate from './components/CreateAccount';
@@ -20,6 +21,10 @@ const styles = {
     marginRight: 20,
   },
 };
+=======
+import AppBar from "./components/AppBar";
+import Airport from "./components/Airport"
+>>>>>>> Stashed changes
 
 class App extends React.Component {
   state = {
@@ -42,6 +47,7 @@ class App extends React.Component {
   };
 
   render() {
+<<<<<<< Updated upstream
     const { classes } = this.props;
     return (
       <div className={classes.root}>
@@ -59,6 +65,11 @@ class App extends React.Component {
                 <NavLink to="/register"><Button color="inherit">Register</Button></NavLink>
               </Toolbar>
             </AppBar>
+=======
+    return <div><AppBar />
+  
+    </div>
+>>>>>>> Stashed changes
 
             <Switch>
               <Route exact path='/' component={AppBar} />

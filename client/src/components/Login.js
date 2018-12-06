@@ -1,24 +1,45 @@
 import React from "react";
 import * as $ from "axios";
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import MenuItem from '@material-ui/core/MenuItem';
 
 const Form = props => (
-  <form>
+  <Grid container justify="center">
+  <form className="createAccountForm">
+  <Typography align="center" variant="h4" color="inherit">
+            Login
+          </Typography>
+          <hr/>
+    <MenuItem>
+    Username:
     <input
       type="text"
       name="username"
       value={props.userVal}
       onChange={props.handleChange}
-    />
+    /></MenuItem>
+    <MenuItem>
+    Password:
     <input
-      type="text"
+      type="password"
       name="password"
       value={props.passVal}
       onChange={props.handleChange}
+<<<<<<< Updated upstream
     />
     <button type="submit" onClick={props.submitUser}>
       Login
     </button>
+=======
+    /></MenuItem>
+    <Button align="center" type="submit" onClick={props.submitUser}>
+      Login
+    </Button>
+>>>>>>> Stashed changes
   </form>
+  </Grid>
 );
 
 class Login extends React.Component {
