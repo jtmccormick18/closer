@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as $ from "axios";
-<<<<<<< Updated upstream
 import { AppBar, Toolbar, Typography, Button, IconButton, withStyles } from '@material-ui/core';
 import { BrowserRouter, Route, Link, Switch, NavLink } from "react-router-dom";
 import AccountCreate from './components/CreateAccount';
 import Login from './components/Login';
 import ErrorPage from './components/ErrorPage';
-// import MenuIcon from '@material-ui/icons/Menu';
+import HomePage from './components/HomePage';
+import ResultPage from './components/ResultsPage/ResultPage';
+import Airport from "./components/Airport"
 
 const styles = {
   root: {
@@ -21,16 +22,12 @@ const styles = {
     marginRight: 20,
   },
 };
-=======
-import AppBar from "./components/AppBar";
-import Airport from "./components/Airport"
->>>>>>> Stashed changes
 
 class App extends React.Component {
   state = {
     userList: [],
     isCreatingAccount: false,
-    isLoggedIn: false
+    isLoggedIn: true
   };
 
   componentDidMount() {
@@ -47,7 +44,6 @@ class App extends React.Component {
   };
 
   render() {
-<<<<<<< Updated upstream
     const { classes } = this.props;
     return (
       <div className={classes.root}>
@@ -65,14 +61,9 @@ class App extends React.Component {
                 <NavLink to="/register"><Button color="inherit">Register</Button></NavLink>
               </Toolbar>
             </AppBar>
-=======
-    return <div><AppBar />
-  
-    </div>
->>>>>>> Stashed changes
 
             <Switch>
-              <Route exact path='/' component={AppBar} />
+              <Route exact path='/' component={this.state.isLoggedIn ? (ResultPage):(HomePage)} />
               <Route exact path='/register' component={AccountCreate} />
               <Route exact path='/login' component={Login} />
               <Route path='*' component={ErrorPage} />

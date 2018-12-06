@@ -27,17 +27,10 @@ const Form = props => (
       name="password"
       value={props.passVal}
       onChange={props.handleChange}
-<<<<<<< Updated upstream
-    />
-    <button type="submit" onClick={props.submitUser}>
-      Login
-    </button>
-=======
     /></MenuItem>
     <Button align="center" type="submit" onClick={props.submitUser}>
       Login
     </Button>
->>>>>>> Stashed changes
   </form>
   </Grid>
 );
