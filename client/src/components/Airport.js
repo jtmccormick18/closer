@@ -1,48 +1,47 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import deburr from 'lodash/deburr';
-import Autosuggest from 'react-autosuggest';
-import match from 'autosuggest-highlight/match';
-import parse from 'autosuggest-highlight/parse';
-import TextField from '@material-ui/core/TextField';
-import Paper from '@material-ui/core/Paper';
-import MenuItem from '@material-ui/core/MenuItem';
-import Popper from '@material-ui/core/Popper';
-import { withStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
+import React from "react";
+import PropTypes from "prop-types";
+import deburr from "lodash/deburr";
+import Autosuggest from "react-autosuggest";
+import match from "autosuggest-highlight/match";
+import parse from "autosuggest-highlight/parse";
+import TextField from "@material-ui/core/TextField";
+import Paper from "@material-ui/core/Paper";
+import MenuItem from "@material-ui/core/MenuItem";
+import Popper from "@material-ui/core/Popper";
+import { withStyles } from "@material-ui/core/styles";
+import { Typography } from "@material-ui/core";
 
 const suggestions = [
-  { label: 'ATL' ,
-city: "Atlanta"},
-  { label: 'LAX' },
-  { label: 'ORD' },
-  { label: 'DFW' },
-  { label: 'DEN' },
-  { label: 'JFK' },
-  { label: 'SFO' },
-  { label: 'LAS' },
-  { label: 'SEA' },
-  { label: 'CLT' },
-  { label: 'EWR' },
-  { label: 'MCO' },
-  { label: 'PHX' },
-  { label: 'MIA' },
-  { label: 'IAH' },
-  { label: 'BOS' },
-  { label: 'MSP' },
-  { label: 'DTW' },
-  { label: 'FLL' },
-  { label: 'PHL' },
-  { label: 'LGA' },
-  { label: 'BWI' },
-  { label: 'SLC' },
-  { label: 'DCA' },
-  { label: 'IAD' },
-  { label: 'SAN' },
-  { label: 'MDW' },
-  { label: 'TPA' },
-  { label: 'HNL' },
-  { label: 'PDX' }
+  { label: "ATL", city: "Atlanta" },
+  { label: "LAX" },
+  { label: "ORD" },
+  { label: "DFW" },
+  { label: "DEN" },
+  { label: "JFK" },
+  { label: "SFO" },
+  { label: "LAS" },
+  { label: "SEA" },
+  { label: "CLT" },
+  { label: "EWR" },
+  { label: "MCO" },
+  { label: "PHX" },
+  { label: "MIA" },
+  { label: "IAH" },
+  { label: "BOS" },
+  { label: "MSP" },
+  { label: "DTW" },
+  { label: "FLL" },
+  { label: "PHL" },
+  { label: "LGA" },
+  { label: "BWI" },
+  { label: "SLC" },
+  { label: "DCA" },
+  { label: "IAD" },
+  { label: "SAN" },
+  { label: "MDW" },
+  { label: "TPA" },
+  { label: "HNL" },
+  { label: "PDX" }
 ];
 
 function renderInputComponent(inputProps) {
@@ -50,15 +49,14 @@ function renderInputComponent(inputProps) {
 
   return (
     <TextField
-      fullWidth
       InputProps={{
         inputRef: node => {
           ref(node);
           inputRef(node);
         },
         classes: {
-          input: classes.input,
-        },
+          input: classes.input
+        }
       }}
       {...other}
     />
@@ -97,7 +95,8 @@ function getSuggestions(value) {
     ? []
     : suggestions.filter(suggestion => {
         const keep =
-          count < 5 && suggestion.label.slice(0, inputLength).toLowerCase() === inputValue;
+          count < 5 &&
+          suggestion.label.slice(0, inputLength).toLowerCase() === inputValue;
 
         if (keep) {
           count += 1;
@@ -114,54 +113,52 @@ function getSuggestionValue(suggestion) {
 const styles = theme => ({
   root: {
     height: 50,
-    flexGrow: 1,
+    flexGrow: 1
   },
   container: {
-    position: 'relative',
+    position: "relative"
   },
   suggestionsContainerOpen: {
-    position: 'absolute',
+    position: "absolute",
     zIndex: 1,
     marginTop: theme.spacing.unit,
     left: 0,
-    right: 0,
+    right: 0
   },
   suggestion: {
-    display: 'block',
+    display: "block"
   },
   suggestionsList: {
     margin: 0,
     padding: 0,
-    listStyleType: 'none',
+    listStyleType: "none"
   },
   divider: {
-    height: theme.spacing.unit * 2,
-  },
+    height: theme.spacing.unit * 2
+  }
 });
 
 class Airport extends React.Component {
   state = {
-    single: '',
-    popper: '',
     suggestions: [],
+    airport: ""
   };
 
   handleSuggestionsFetchRequested = ({ value }) => {
     this.setState({
-      suggestions: getSuggestions(value),
+      suggestions: getSuggestions(value)
     });
   };
 
   handleSuggestionsClearRequested = () => {
     this.setState({
-      suggestions: [],
+      suggestions: []
     });
   };
 
-  handleChange = name => (event, { newValue }) => {
-    this.setState({
-      [name]: newValue,
-    });
+  onChange = (e, {newValue}) => {
+    console.log(e.target);
+    this.props.onChange(e, { name: "airport", value: newValue })
   };
 
   render() {
@@ -173,25 +170,28 @@ class Airport extends React.Component {
       onSuggestionsFetchRequested: this.handleSuggestionsFetchRequested,
       onSuggestionsClearRequested: this.handleSuggestionsClearRequested,
       getSuggestionValue,
-      renderSuggestion,
+      renderSuggestion
     };
 
     return (
       <div className={classes.root}>
-      <Typography>Airport:</Typography>
+        <MenuItem><span className="menuLabel">Airport: &nbsp;</span>
         <Autosuggest
           {...autosuggestProps}
           inputProps={{
+          
+            name: "airport",
+            type: "text",
             classes,
-            placeholder: 'Search an Airport Code',
-            value: this.state.single,
-            onChange: this.handleChange('single'),
+            placeholder: "Search an Airport Code",
+            value: this.props.currAirport,
+            onChange: this.onChange
           }}
           theme={{
             container: classes.container,
             suggestionsContainerOpen: classes.suggestionsContainerOpen,
             suggestionsList: classes.suggestionsList,
-            suggestion: classes.suggestion,
+            suggestion: classes.suggestion
           }}
           renderSuggestionsContainer={options => (
             <Paper {...options.containerProps} square>
@@ -200,14 +200,14 @@ class Airport extends React.Component {
           )}
         />
         <div className={classes.divider} />
-     
+        </MenuItem>
       </div>
     );
   }
 }
 
 Airport.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(Airport);

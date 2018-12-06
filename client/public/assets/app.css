@@ -23,3 +23,16 @@ a{
 a:hover {
     text-decoration:none;
 }
+
+.menuitem { 
+    align-content: right;
+    width: 50%;
+}
+
+.menuLabel {
+    width: 50%;
+}
+
+Button{
+    float: right;
+}

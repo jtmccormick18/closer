@@ -6,7 +6,9 @@ import { BrowserRouter, Route, Link, Switch, NavLink } from "react-router-dom";
 import AccountCreate from './components/CreateAccount';
 import Login from './components/Login';
 import ErrorPage from './components/ErrorPage';
-// import MenuIcon from '@material-ui/icons/Menu';
+import HomePage from './components/HomePage';
+import ResultPage from './components/ResultsPage/ResultPage';
+import Airport from "./components/Airport"
 
 const styles = {
   root: {
@@ -25,7 +27,7 @@ class App extends React.Component {
   state = {
     userList: [],
     isCreatingAccount: false,
-    isLoggedIn: false
+    isLoggedIn: true
   };
 
   componentDidMount() {
@@ -61,7 +63,7 @@ class App extends React.Component {
             </AppBar>
 
             <Switch>
-              <Route exact path='/' component={AppBar} />
+              <Route exact path='/' component={this.state.isLoggedIn ? (ResultPage):(HomePage)} />
               <Route exact path='/register' component={AccountCreate} />
               <Route exact path='/login' component={Login} />
               <Route path='*' component={ErrorPage} />
