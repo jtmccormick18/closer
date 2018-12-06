@@ -13,16 +13,18 @@ const Form = props => (
           </Typography>
           <hr/>
     <MenuItem>
-    Username:
+    <span className="menuLabel">Username:</span>
     <input
+      className="menuitem"
       type="text"
       name="username"
       value={props.userVal}
       onChange={props.handleChange}
     /></MenuItem>
     <MenuItem>
-    Password:
+    <span className="menuLabel">Password:</span>
     <input
+    className="menuitem"
       type="password"
       name="password"
       value={props.passVal}

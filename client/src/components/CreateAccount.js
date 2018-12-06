@@ -14,8 +14,9 @@ const Form = props => (
           </Typography>
       <hr />
       <MenuItem>
-        Name:
+        <span className="menuLabel">Username:</span>
     <input
+          className="menuitem"
           type="text"
           name="username"
           value={props.userVal}
@@ -24,16 +25,18 @@ const Form = props => (
         />
       </MenuItem>
       <MenuItem>
-        Password:
+      <span className="menuLabel">Password:</span>
     <input
+          className="menuitem"
           type="password"
           name="password"
           value={props.passVal}
           onChange={props.handleChange}
         /> </MenuItem>
       <MenuItem>
-        Nickname:
+      <span className="menuLabel">Nickname:</span>
     <input
+<<<<<<< HEAD
           type="text"
           name="nickname"
           value={props.nickVal}
@@ -48,24 +51,42 @@ const Form = props => (
         /></MenuItem>
       <MenuItem>
         Email:
+=======
+      className="menuitem"
+      type="text"
+      name="nickname"
+      value={props.nickVal}
+      onChange={props.handleChange}
+    /></MenuItem> 
+  
+    <MenuItem>
+    <span className="menuLabel">Email</span>
+>>>>>>> 59c9953bd068389e8ac571230e11ee9f6cfd7fdb
     <input
+          className="menuitem"
           type="text"
           name="email"
           value={props.eVal}
           onChange={props.handleChange}
         /></MenuItem>
       <MenuItem>
-        Budget:
+      <span className="menuLabel">Budget:</span>
     <input
+<<<<<<< HEAD
+=======
+      className="menuitem"
+>>>>>>> 59c9953bd068389e8ac571230e11ee9f6cfd7fdb
       type="text"
       name="budget"
       value={props.budgetVal}
       onChange={props.handleChange}
     /></MenuItem>
-    <Airport value={props.value} onChange={props.handleChange}/>
+    <Airport onChange={props.handleChange} currAirport={props.airVal} />
+    <div className="buttonbox">
     <Button align="center" type="submit" onClick={props.submitUser}>
       Create Account
     </Button>
+    </div>
     </form>
   </Grid>
 );
@@ -81,11 +102,18 @@ class AccountCreate extends React.Component {
   };
 
   componentDidMount() {}
+<<<<<<< HEAD
   handleChange = (e) => {
+=======
+  handleChange = (e, values) => {
+    values = e.target.name ? e.target : values;
+    const {name, value} = values;
+>>>>>>> 59c9953bd068389e8ac571230e11ee9f6cfd7fdb
     this.setState({
-      [e.target.name]: e.target.value
+      [name]: value
     });
   };
+
   createUser = e => {
     e.preventDefault();
     const userData = {
@@ -106,6 +134,7 @@ class AccountCreate extends React.Component {
         alert('Fill out the entire form!')
       })
   };
+
   render() {
     return (
       <div>
