@@ -8,12 +8,10 @@ import Login from './components/Login';
 import ErrorPage from './components/ErrorPage';
 import HomePage from './components/HomePage';
 import ResultPage from './components/ResultsPage/ResultPage';
-import Airport from "./components/Airport"
-// import MenuIcon from '@material-ui/icons/Menu';
 import PartnerCreate from "./components/Partner";
 import Flight from "./components/ResultsPage/Flight";
 import PartnerUpdate from "./components/PartnerUpdate";
-
+import Hotel from './components/Hotel';
 
 const styles = {
   root: {
@@ -32,11 +30,20 @@ class App extends React.Component {
   state = {
     userList: [],
     isCreatingAccount: false,
-    isLoggedIn: false
+    isLoggedIn: false,
+    hasPartner: false
   };
 
   componentDidMount() {
     this.getUsers();
+  }
+  childHandler= (ChildState) =>{
+    console.log(ChildState.loggedIn)
+    this.setState({
+      isLoggedIn: ChildState.loggedIn,
+      hasPartner: ChildState.hasPartner
+    })
+    console.log(`isLoggedIn: ${this.state.isLoggedIn} hasPartner: ${this.state.hasPartner}`)
   }
 
   getUsers = () => {
@@ -66,14 +73,17 @@ class App extends React.Component {
                 <NavLink to="/register"><Button color="inherit">Register</Button></NavLink>
               </Toolbar>
             </AppBar>
+         
 
             <Switch>
-              <Route exact path='/' component={AppBar} />
+              <Route exact path='/' component={HomePage} />
+              <Route exact path='/flight' component={Flight} />
               <Route exact path='/register' component={AccountCreate} />
-              <Route exact path='/login' component={Login} />
               <Route exact path='/results' component={ResultPage}/>
+              <Route exact path='/login' component={()=><Login action={this.childHandler}/>}/>
               <Route exact path='/partner' component={PartnerCreate} />
               <Route exact path='/updatepartner' component={PartnerUpdate} />
+              <Route exact path='/hotel' component = {Hotel} />
               <Route path='*' component={ErrorPage} />
             </Switch>
           </div>
