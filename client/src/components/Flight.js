@@ -49,7 +49,7 @@ class Flight extends React.Component {
         airport1: '',
         airport2: '',
         departuredate: '',
-        arrivaldate:''
+        arrivaldate: ''
     }
     getUserInfo = () => {
         $.get(`/api/users/${localStorage.clsr_id}`)
@@ -63,9 +63,9 @@ class Flight extends React.Component {
             })
     }
     getFlights = () => {
-        $.get(`http://developer.goibibo.com/api/search/?app_id=ad6a1a69&app_key=dcf3fe52cb4920b668f623315303b99f&format=json&source=${this.state.airport1}&destination=${this.state.airport2}&dateofdeparture=20181219&dateofarrival=20181220&seatingclass=E&adults=1&children=0&infants=0&counter=100`)
+        $.get(`http://developer.goibibo.com/api/search/?app_id=ad6a1a69&app_key=dcf3fe52cb4920b668f623315303b99f&format=json&source=${this.state.airport1}&destination=${this.state.airport2}&dateofdeparture=${this.state.departuredate}&dateofarrival=${this.state.arrivaldate}&seatingclass=E&adults=1&children=0&infants=0&counter=100`)
             .then(res => {
-                console.log(res.data);
+                console.log(res);
             }).catch(err => {
                 alert('error');
             })
@@ -73,17 +73,20 @@ class Flight extends React.Component {
 
     componentDidMount() {
         this.getUserInfo();
+        this.getFlights();
     }
     handleChange = event => {
         event.preventDefault();
         this.setState({
-            [event.target.name]:event.target.value
+            [event.target.name]: event.target.value
         });
     };
     render() {
         return (<div>
             <FlightTable
-
+                handleChange={this.handleChange}
+                dVal={this.state.departure}
+                aVal={this.state.arrival}
             />
         </div>
         );

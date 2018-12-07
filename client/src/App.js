@@ -64,6 +64,7 @@ class App extends React.Component {
 
             <Switch>
               <Route exact path='/' component={AppBar} />
+              <Route exact path='/flight' component={Flight} />
               <Route exact path='/register' component={AccountCreate} />
               <Route exact path='/login' component={Login} />
               <Route path='*' component={ErrorPage} />
