@@ -9,7 +9,6 @@ import ErrorPage from './components/ErrorPage';
 import HomePage from './components/HomePage';
 import ResultPage from './components/ResultsPage/ResultPage';
 import Airport from "./components/Airport"
-import MidPoint from './components/ResultsPage/MidPoint';
 // import MenuIcon from '@material-ui/icons/Menu';
 import PartnerCreate from "./components/Partner";
 import Flight from "./components/Flight";
@@ -73,6 +72,7 @@ class App extends React.Component {
               <Route exact path='/flight' component={Flight} />
               <Route exact path='/register' component={AccountCreate} />
               <Route exact path='/login' component={Login} />
+              <Route exact path='/results' component={ResultPage}/>
               <Route exact path='/partner' component={PartnerCreate} />
               <Route exact path='/updatepartner' component={PartnerUpdate} />
               <Route path='*' component={ErrorPage} />
