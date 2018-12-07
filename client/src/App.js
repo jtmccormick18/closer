@@ -8,9 +8,14 @@ import Login from './components/Login';
 import ErrorPage from './components/ErrorPage';
 import HomePage from './components/HomePage';
 import ResultPage from './components/ResultsPage/ResultPage';
+<<<<<<< Updated upstream
 import Airport from "./components/Airport"
 import MidPoint from './components/ResultsPage/MidPoint';
 // import MenuIcon from '@material-ui/icons/Menu';
+=======
+import PartnerCreate from "./components/Partner";
+
+>>>>>>> Stashed changes
 
 const styles = {
   root: {
@@ -68,6 +73,7 @@ class App extends React.Component {
               <Route exact path='/' component={this.state.isLoggedIn ? (ResultPage):(HomePage)} />
               <Route exact path='/register' component={AccountCreate} />
               <Route exact path='/login' component={Login} />
+              <Route exact path='/partner' component={PartnerCreate} />
               <Route path='*' component={ErrorPage} />
             </Switch>
           </div>

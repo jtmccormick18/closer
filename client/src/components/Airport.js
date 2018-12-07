@@ -7,9 +7,9 @@ import parse from "autosuggest-highlight/parse";
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import MenuItem from "@material-ui/core/MenuItem";
-import Popper from "@material-ui/core/Popper";
+
 import { withStyles } from "@material-ui/core/styles";
-import { Typography } from "@material-ui/core";
+
 
 const suggestions = [
   { label: "ATL", city: "Atlanta" },
@@ -91,7 +91,7 @@ function getSuggestions(value) {
   const inputLength = inputValue.length;
   let count = 0;
 
-  return inputLength === 0
+  const filteredSuggestions = inputLength === 0
     ? []
     : suggestions.filter(suggestion => {
         const keep =
@@ -104,6 +104,8 @@ function getSuggestions(value) {
 
         return keep;
       });
+
+    return filteredSuggestions;
 }
 
 function getSuggestionValue(suggestion) {
@@ -140,7 +142,7 @@ const styles = theme => ({
 
 class Airport extends React.Component {
   state = {
-    suggestions: [],
+    suggestions: suggestions,
     airport: ""
   };
 
@@ -157,7 +159,6 @@ class Airport extends React.Component {
   };
 
   onChange = (e, {newValue}) => {
-    console.log(e.target);
     this.props.onChange(e, { name: "airport", value: newValue })
   };
 
@@ -175,7 +176,7 @@ class Airport extends React.Component {
 
     return (
       <div className={classes.root}>
-        <MenuItem><span className="menuLabel">Airport: &nbsp;</span>
+        <MenuItem style={{overflow: "visible"}}><span className="menuLabel">Airport: &nbsp;</span>
         <Autosuggest
           {...autosuggestProps}
           inputProps={{
