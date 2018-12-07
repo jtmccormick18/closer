@@ -28,6 +28,17 @@ module.exports = function (app) {
             res.json(err);
         })
     })
+    app.get('/api/partners/:id',function(req,res){
+        db.Partner.find({
+            where:{
+                userid:req.params.id
+            }
+        }).then(resp=>{
+            res.json(resp)
+        }).catch(err=>{
+            res.json(err)
+        })
+    })
     // Allowing Partner Adding
     app.post('/api/partners/:id', function(req,res){
         db.Partner.create({
