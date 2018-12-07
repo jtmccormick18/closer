@@ -10,7 +10,7 @@ const PartnerForm = props => (
   <Grid container justify="center">
     <form className="createAccountForm">
       <Typography align="center" variant="h4" color="inherit">
-        Add Your Buddy
+        Update your Buddy
       </Typography>
       <hr />
       <MenuItem>
@@ -33,7 +33,7 @@ const PartnerForm = props => (
   </Grid>
 );
 
-class PartnerCreate extends React.Component {
+class PartnerUpdate extends React.Component {
   state = {
     name: "",
     airport: ""
@@ -47,7 +47,7 @@ class PartnerCreate extends React.Component {
     });
   };
 
-  createPartner = e => {
+    updatePartner = e => {
     e.preventDefault();
     const userData = {
   
@@ -55,10 +55,10 @@ class PartnerCreate extends React.Component {
       partner_airport: this.state.airport
     };
     console.log(userData);
-    $.post(`/api/partners/${localStorage.clsr_id}`, userData)
+    $.put(`/api/partners/${localStorage.clsr_id}`, userData)
       .then(resp => {
         console.log(resp);
-        alert("Partner Updated!");
+        alert("Partner Updated! ");
       })
       .catch(err => {
         alert("Fill out the entire form!");
@@ -72,11 +72,11 @@ class PartnerCreate extends React.Component {
           handleChange={this.handleChange}
           nameVal={this.state.name}
           airVal={this.state.airport}
-          submitPartner={this.createPartner}
+          submitPartner={this.updatePartner}
         />
       </div>
     );
   }
 }
 
-export default PartnerCreate;
+export default PartnerUpdate;
