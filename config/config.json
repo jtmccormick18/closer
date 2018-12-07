@@ -1,11 +1,7 @@
 {
     "development": {
       "username": "root",
-<<<<<<< HEAD
       "password": "password",
-=======
-      "password": "georgia18",
->>>>>>> 5cdb84db11f7ea0ce86a8237c904d2c5cabf8381
       "database": "clsr_db",
       "host": "127.0.0.1",
       "port": 3306,

@@ -29,14 +29,34 @@ module.exports = function (app) {
         })
     })
     // Allowing Partner Adding
-    app.post('/api/partners/:id', authentication, function(req,res){
-        db.Partner.create(req.body)
+    app.post('/api/partners/:id', function(req,res){
+        db.Partner.create({
+            UserId: req.params.id,
+            name: req.body.name,
+            partner_airport: req.body.partner_airport
+        })
         .then(success=>{
             res.json(success)
         }).catch(err=>{
             res.json(err)
         })
     })
+
+    //Allowing Partner Updating
+    app.put("/api/partners/:id", function(req, res) {
+        db.Partner.update(
+          { name: req.body.name, 
+            partner_airport: req.body.partner_airport },
+          { where: { UserId: req.params.id } }
+        )
+          .then(success => {
+            res.json(success);
+          })
+          .catch(err => {
+            res.json(err);
+          });
+      });
+    
 
     //Allowing account creation
     app.post('/api/users',function(req,res){

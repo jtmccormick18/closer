@@ -6,15 +6,14 @@ import { BrowserRouter, Route, Link, Switch, NavLink } from "react-router-dom";
 import AccountCreate from './components/CreateAccount';
 import Login from './components/Login';
 import ErrorPage from './components/ErrorPage';
-<<<<<<< HEAD
 import Flight from './components/Flight';
-=======
 import HomePage from './components/HomePage';
 import ResultPage from './components/ResultsPage/ResultPage';
 import Airport from "./components/Airport"
 import MidPoint from './components/ResultsPage/MidPoint';
->>>>>>> 5cdb84db11f7ea0ce86a8237c904d2c5cabf8381
 // import MenuIcon from '@material-ui/icons/Menu';
+import PartnerCreate from "./components/Partner";
+
 
 const styles = {
   root: {
@@ -74,6 +73,7 @@ class App extends React.Component {
               <Route exact path='/flight' component={Flight} />
               <Route exact path='/register' component={AccountCreate} />
               <Route exact path='/login' component={Login} />
+              <Route exact path='/partner' component={PartnerCreate} />
               <Route path='*' component={ErrorPage} />
             </Switch>
           </div>
