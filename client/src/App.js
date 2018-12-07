@@ -12,6 +12,7 @@ import Airport from "./components/Airport"
 import MidPoint from './components/ResultsPage/MidPoint';
 // import MenuIcon from '@material-ui/icons/Menu';
 import PartnerCreate from "./components/Partner";
+import Flight from "./components/Flight";
 
 
 const styles = {
@@ -31,7 +32,7 @@ class App extends React.Component {
   state = {
     userList: [],
     isCreatingAccount: false,
-    isLoggedIn: true
+    isLoggedIn: false
   };
 
   componentDidMount() {
@@ -67,7 +68,8 @@ class App extends React.Component {
             </AppBar>
 
             <Switch>
-              <Route exact path='/' component={this.state.isLoggedIn ? (ResultPage):(HomePage)} />
+              <Route exact path='/' component={AppBar} />
+              <Route exact path='/flight' component={Flight} />
               <Route exact path='/register' component={AccountCreate} />
               <Route exact path='/login' component={Login} />
               <Route exact path='/partner' component={PartnerCreate} />
