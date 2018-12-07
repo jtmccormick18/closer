@@ -9,7 +9,7 @@ import ErrorPage from './components/ErrorPage';
 import HomePage from './components/HomePage';
 import ResultPage from './components/ResultsPage/ResultPage';
 import PartnerCreate from "./components/Partner";
-import Flight from "./components/Flight";
+import Flight from "./components/ResultsPage/Flight";
 import PartnerUpdate from "./components/PartnerUpdate";
 import Hotel from './components/Hotel';
 
