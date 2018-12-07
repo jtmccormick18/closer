@@ -13,6 +13,7 @@ import MidPoint from './components/ResultsPage/MidPoint';
 // import MenuIcon from '@material-ui/icons/Menu';
 import PartnerCreate from "./components/Partner";
 import Flight from "./components/Flight";
+import PartnerUpdate from "./components/PartnerUpdate";
 
 
 const styles = {
@@ -73,6 +74,7 @@ class App extends React.Component {
               <Route exact path='/register' component={AccountCreate} />
               <Route exact path='/login' component={Login} />
               <Route exact path='/partner' component={PartnerCreate} />
+              <Route exact path='/updatepartner' component={PartnerUpdate} />
               <Route path='*' component={ErrorPage} />
             </Switch>
           </div>
