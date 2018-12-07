@@ -11,7 +11,7 @@ import ResultPage from './components/ResultsPage/ResultPage';
 import Airport from "./components/Airport"
 // import MenuIcon from '@material-ui/icons/Menu';
 import PartnerCreate from "./components/Partner";
-import Flight from "./components/Flight";
+import Flight from "./components/ResultsPage/Flight";
 import PartnerUpdate from "./components/PartnerUpdate";
 
 
@@ -69,7 +69,6 @@ class App extends React.Component {
 
             <Switch>
               <Route exact path='/' component={AppBar} />
-              <Route exact path='/flight' component={Flight} />
               <Route exact path='/register' component={AccountCreate} />
               <Route exact path='/login' component={Login} />
               <Route exact path='/results' component={ResultPage}/>
