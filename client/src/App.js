@@ -9,11 +9,10 @@ import ErrorPage from './components/ErrorPage';
 import HomePage from './components/HomePage';
 import ResultPage from './components/ResultsPage/ResultPage';
 import Airport from "./components/Airport"
-// import MenuIcon from '@material-ui/icons/Menu';
 import PartnerCreate from "./components/Partner";
 import Flight from "./components/Flight";
 import PartnerUpdate from "./components/PartnerUpdate";
-
+import Hotel from './components/Hotel';
 
 const styles = {
   root: {
@@ -75,6 +74,7 @@ class App extends React.Component {
               <Route exact path='/results' component={ResultPage}/>
               <Route exact path='/partner' component={PartnerCreate} />
               <Route exact path='/updatepartner' component={PartnerUpdate} />
+              <Route exact path='/hotel' component = {Hotel} />
               <Route path='*' component={ErrorPage} />
             </Switch>
           </div>
