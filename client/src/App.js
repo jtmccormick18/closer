@@ -9,6 +9,8 @@ import ErrorPage from './components/ErrorPage';
 import HomePage from './components/HomePage';
 import ResultPage from './components/ResultsPage/ResultPage';
 import Airport from "./components/Airport"
+import MidPoint from './components/ResultsPage/MidPoint';
+// import MenuIcon from '@material-ui/icons/Menu';
 
 const styles = {
   root: {
