@@ -6,13 +6,13 @@ import { BrowserRouter, Route, Link, Switch, NavLink } from "react-router-dom";
 import AccountCreate from './components/CreateAccount';
 import Login from './components/Login';
 import ErrorPage from './components/ErrorPage';
-import Flight from './components/Flight';
 import HomePage from './components/HomePage';
 import ResultPage from './components/ResultsPage/ResultPage';
 import Airport from "./components/Airport"
 import MidPoint from './components/ResultsPage/MidPoint';
 // import MenuIcon from '@material-ui/icons/Menu';
 import PartnerCreate from "./components/Partner";
+import Flight from "./components/Flight";
 
 
 const styles = {
@@ -66,7 +66,6 @@ class App extends React.Component {
                 <NavLink to="/register"><Button color="inherit">Register</Button></NavLink>
               </Toolbar>
             </AppBar>
-            <Flight/>
 
             <Switch>
               <Route exact path='/' component={AppBar} />
