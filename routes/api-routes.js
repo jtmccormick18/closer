@@ -54,6 +54,16 @@ module.exports = function (app) {
             res.status(500).json(err);
         })
     })
+    //Finding airport GEO-Coordinates
+    app.get('/airports/:id',function(req,res){
+        db.sequelize.query(`select * from airportdb where userid=${req.params.id}`)
+        .then(resp=>{
+            res.json(resp)
+        })
+        .catch(err=>{
+            res.json(err)
+        })
+    })
     //Parsing user input to hash through encrypted passwords
     app.post('/login', function(req,res){
         db.User.findOne({
