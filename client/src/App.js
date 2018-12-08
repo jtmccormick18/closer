@@ -11,7 +11,7 @@ import ResultPage from './components/ResultsPage/ResultPage';
 import PartnerCreate from "./components/Partner";
 import Flight from "./components/ResultsPage/Flight";
 import PartnerUpdate from "./components/PartnerUpdate";
-import Hotel from './components/Hotel';
+import Hotel from './components/ResultsPage/Hotel';
 
 const styles = {
   root: {
