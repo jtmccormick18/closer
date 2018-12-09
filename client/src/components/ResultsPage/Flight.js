@@ -16,7 +16,7 @@ const FlightTable = (props) => (
             </Typography>
             <hr />
             <MenuItem>
-                Departure Date:
+                When would you like to leave?:
                 <input
                     type="date"
                     name="departure"
@@ -25,7 +25,7 @@ const FlightTable = (props) => (
                 />
             </MenuItem>
             <MenuItem>
-                Arrival Date:
+                When do you plan to come home?:
                 <input
                     type="date"
                     name="arrival"
