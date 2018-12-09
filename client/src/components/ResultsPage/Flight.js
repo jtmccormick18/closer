@@ -28,7 +28,7 @@ const FlightTable = (props) => (
                 When do you plan to come home?:
                 <input
                     type="date"
-                    name="arrival"
+                    name="return"
                     value={props.aVal}
                     onChange={props.handleChange}
                 />
