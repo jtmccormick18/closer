@@ -17,11 +17,14 @@ class ResultPage extends React.Component {
         param: '',
         airport: '',
         partner_airport: '',
+        userFlights:[],
+        partnerFlights:[],
         airportA: [],
         airportB: [],
         midpoint: [],
+        midpointCity:'',
         departure: '',
-        arrival: '',
+        return: '',
         s22obj: {
             aid: 'clsrapp', // your affiliate id for tracking
             lat: '',
@@ -40,7 +43,7 @@ class ResultPage extends React.Component {
 
     };
     componentDidMount = () => {
-        this.getMidPoint();
+        
     };
     getMidPoint = () => {
         $.get(`/airports/${localStorage.clsr_id}`)
@@ -53,7 +56,7 @@ class ResultPage extends React.Component {
                 let point2 = turf.point([partLat, partLong]);
                 let midpoint = turf.midpoint(point1, point2);
                 let date1 = this.state.departure.split('-');
-                let date2 = this.state.arrival.split('-');
+                let date2 = this.state.return.split('-');
                 this.setState({
                     airport: resp.data[0][0].airport,
                     partner_airport: resp.data[0][0].partner_airport,
@@ -70,6 +73,7 @@ class ResultPage extends React.Component {
                         markerimage: "https://www.stay22.com/logo.png"
                     }
                 })
+                console.log(this.state)
             })
             .then(resp => {
                 for (var key in this.state.s22obj) {
@@ -102,8 +106,9 @@ class ResultPage extends React.Component {
         this.setState({
             hasDates: true,
         })
+        this.getMidPoint();
         let date1 = this.state.departure.split('-');
-        let date2 = this.state.arrival.split('-');
+        let date2 = this.state.return.split('-');
         $.get(`http://developer.goibibo.com/api/search/?app_id=ad6a1a69&app_key=dcf3fe52cb4920b668f623315303b99f&format=json&source=${this.state.airport}&destination=${this.state.partner_airport}&dateofdeparture=${date1[0]}${date1[1]}${date1[2]}&dateofarrival=${date1[0]}${date1[1]}${date1[2]}&seatingclass=E&adults=1&children=0&infants=0&counter=100`)
             .then(res => {
                 console.log(res);
@@ -112,11 +117,8 @@ class ResultPage extends React.Component {
             })
         console.log(this.state)
     }
-    getDate = (e) => {
-        e.preventDefault();
-    }
     componentDidMount() {
-        this.getMidPoint();
+        // this.getMidPoint();
     }
     handleChange = e => {
         e.preventDefault();
@@ -129,7 +131,7 @@ class ResultPage extends React.Component {
         return (
             <div>
                 {!this.state.hasDates ?
-                    (<FlightTable handleChange={this.handleChange} dVal={this.state.departure} aVal={this.state.arrival} handleSubmit={this.getFlights} />)
+                    (<FlightTable handleChange={this.handleChange} dVal={this.state.departure} aVal={this.state.return} handleSubmit={this.getFlights} />)
                     :
                     (<div>
                         <p>Results Go here</p>
