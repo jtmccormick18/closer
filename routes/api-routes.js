@@ -137,4 +137,9 @@ module.exports = function (app) {
             res.json(err);
         })
     });
+
+    //creating a Authentication route
+    app.get('/check', authentication, function(req,res){
+        res.status(200).end();
+    })
 }
