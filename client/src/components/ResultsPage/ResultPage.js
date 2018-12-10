@@ -10,6 +10,13 @@ const HotelDisplay = (props) => (
         <iframe title="hotelMap" id="stay22-widget" width={props.width} height={props.height} src={props.src} frameBorder="0" allowFullScreen></iframe>
     </div>
 )
+const Flights=(props)=>(
+    <div>
+        <h1>{props.embark} to {props.dest}</h1>
+        <p>Airline: {props.airline}</p>
+        <p>Flight Number: {props.flightNo}</p>
+    </div>
+)
 
 class ResultPage extends React.Component {
     state = {
@@ -25,6 +32,9 @@ class ResultPage extends React.Component {
         destITACode: '',
         destAirCoordinates: [],
         departure: '',
+        hasFlights:false,
+        partnerAir:{},
+        userAir:{},
         return: '',
         s22obj: {
             aid: 'clsrapp', // your affiliate id for tracking
@@ -96,6 +106,11 @@ class ResultPage extends React.Component {
                         })
                     })
             })
+            .then(res=>{
+                this.setState({
+                    hasFlights:true
+                })
+            })
     }
     getMidPoint = () => {
         $.get(`/airports/${localStorage.clsr_id}`)
@@ -157,7 +172,6 @@ class ResultPage extends React.Component {
         this.getMidPoint();
     }
     componentDidMount() {
-        this.getFlights();
     }
     handleChange = e => {
         e.preventDefault();
@@ -179,7 +193,10 @@ class ResultPage extends React.Component {
                             <HotelDisplay width={this.state.settings22.width} height={this.state.settings22.height} src={this.state.params22} />
                         </div>
                         <br />
-                        <p>Airfare Component</p>
+                        {this.state.hasFlights ? (<div><Flights embark={this.state.userAir.origin} dest={this.state.userAir.destination}  airline={this.state.userAir.airline}
+                        flightNo={this.state.userAir.flightno}/>
+                        <Flights embark={this.state.partnerAir.origin} dest={this.state.partnerAir.destination} airline={this.state.partnerAir.airline}
+                        flightNo={this.state.partnerAir.flightno}/></div>):(<div/>)}
                         <br />
                         <p>Hotel Component</p>
                         <br />
