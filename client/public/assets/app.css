@@ -13,6 +13,7 @@
     margin-top: 20px;
     width: 50%;
     padding: 10px;
+    border-radius: 25px;
 }
 
 a{
@@ -33,6 +34,15 @@ a:hover {
     width: 50%;
 }
 
+.flightTable{
+    float:right;
+    background: black;
+}
 Button{
     float: right;
+}
+
+.HotelDisplay{
+    float: right;
+    width: 75%
 }

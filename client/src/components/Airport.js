@@ -12,7 +12,7 @@ import { withStyles } from "@material-ui/core/styles";
 
 
 const suggestions = [
-  { label: "ATL", city: "Atlanta" },
+  { label: "ATL" },
   { label: "LAX" },
   { label: "ORD" },
   { label: "DFW" },
@@ -55,7 +55,7 @@ function renderInputComponent(inputProps) {
           inputRef(node);
         },
         classes: {
-          input: classes.input
+          input: classes.input,
         }
       }}
       {...other}
@@ -180,7 +180,6 @@ class Airport extends React.Component {
         <Autosuggest
           {...autosuggestProps}
           inputProps={{
-          
             name: "airport",
             type: "text",
             classes,

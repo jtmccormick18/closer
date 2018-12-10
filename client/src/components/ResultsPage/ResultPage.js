@@ -4,6 +4,7 @@ import * as turf from '@turf/turf';
 import FlightTable from './Flight';
 // import Hotel from './Hotel';
 import * as $ from 'axios';
+import YourPartner from "./YourPartner"
 
 const HotelDisplay = (props) => (
     <div>
@@ -180,6 +181,11 @@ class ResultPage extends React.Component {
         });
     };
 
+    updatePartner= e=>{
+        e.preventDefualt();
+        
+    }
+
     render() {
         return (
             <div>
@@ -187,6 +193,8 @@ class ResultPage extends React.Component {
                     (<FlightTable handleChange={this.handleChange} dVal={this.state.departure} aVal={this.state.return} handleSubmit={this.getFlights} />)
                     :
                     (<div>
+
+                        <YourPartner />
                         <p>Results Go here</p>
                         <br />
                         <div>
@@ -201,6 +209,7 @@ class ResultPage extends React.Component {
                         <p>Hotel Component</p>
                         <br />
                         <p>Total Cost Component</p>
+
                     </div>
                     )}
             </div>
