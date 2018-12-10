@@ -79,7 +79,7 @@ class App extends React.Component {
             <Switch>
               <Route exact path='/' component={HomePage} />
               <PrivateRoute exact path='/flight' component={Flight} />
-              <PrivateRoute exact path='/register' component={AccountCreate} />
+              <Route exact path='/register' component={AccountCreate} />
               <PrivateRoute exact path='/results' component={ResultPage}/>
               <Route exact path='/login' component={()=><Login action={this.childHandler}/>}/>
               <PrivateRoute exact path='/partner' component={PartnerCreate} />
