@@ -17,12 +17,13 @@ class ResultPage extends React.Component {
         param: '',
         airport: '',
         partner_airport: '',
-        userFlights:[],
-        partnerFlights:[],
+        userFlights: [],
+        partnerFlights: [],
         airportA: [],
         airportB: [],
         midpoint: [],
-        midpointCity:'',
+        destITACode: '',
+        destAirCoordinates: [],
         departure: '',
         return: '',
         s22obj: {
@@ -43,8 +44,59 @@ class ResultPage extends React.Component {
 
     };
     componentDidMount = () => {
-        
+
     };
+    getFlights = (e) => {
+        this.setState({
+            hasDates: true,
+        })
+        this.getMidPoint()
+        let date1 = this.state.departure.split('-');
+        let date2 = this.state.return.split('-');
+        let data = {
+            lat: this.state.midpoint[0],
+            long: this.state.midpoint[1]
+        }
+        $.post('/api/midpoint', data)
+            .then(resp => {
+                this.setState({
+                    destITACode: resp.data[0][0].ita,
+                    destAirCoordinates: [resp.data[0][0].lattitude, resp.data[0][0].longitude]
+                })
+            })
+            .then(resp => {
+                $.get(`http://developer.goibibo.com/api/search/?app_id=ad6a1a69&app_key=dcf3fe52cb4920b668f623315303b99f&format=json&source=${this.state.airport}&destination=${this.state.destITACode}&dateofdeparture=${date1[0]}${date1[1]}${date1[2]}&dateofarrival=${date1[0]}${date1[1]}${date1[2]}&seatingclass=E&adults=1&children=0&infants=0&counter=100`)
+                .then(res => {
+                    let flightIndex;
+                    let cheapestFare=res.data.data.onwardflights[0].fare.adulttotalfare;
+                    for (let i=0;i<res.data.data.onwardflights.length;i++){
+                        if (cheapestFare>res.data.data.onwardflights[i].fare.adulttotalfare){
+                            cheapestFare=res.data.data.onwardflights[i].fare.adulttotalfare
+                            flightIndex=res.data.data.onwardflights[i]
+                        }
+                    }
+                    this.setState({
+                        userAir: flightIndex
+                    })
+                })
+            })
+            .then(resp=>{
+                $.get(`http://developer.goibibo.com/api/search/?app_id=ad6a1a69&app_key=dcf3fe52cb4920b668f623315303b99f&format=json&source=${this.state.partner_airport}&destination=${this.state.destITACode}&dateofdeparture=${date1[0]}${date1[1]}${date1[2]}&seatingclass=E&adults=1&children=0&infants=0&counter=100`)
+                    .then(res => {
+                        let flightIndex;
+                        let cheapestFare=res.data.data.onwardflights[0].fare.adulttotalfare;
+                        for (let i=0;i<res.data.data.onwardflights.length;i++){
+                            if (cheapestFare>res.data.data.onwardflights[i].fare.adulttotalfare){
+                                cheapestFare=res.data.data.onwardflights[i].fare.adulttotalfare
+                                flightIndex=res.data.data.onwardflights[i]
+                            }
+                        }
+                        this.setState({
+                            partnerAir: flightIndex
+                        })
+                    })
+            })
+    }
     getMidPoint = () => {
         $.get(`/airports/${localStorage.clsr_id}`)
             .then(resp => {
@@ -73,7 +125,6 @@ class ResultPage extends React.Component {
                         markerimage: "https://www.stay22.com/logo.png"
                     }
                 })
-                console.log(this.state)
             })
             .then(resp => {
                 for (var key in this.state.s22obj) {
@@ -102,23 +153,11 @@ class ResultPage extends React.Component {
                 })
             })
     }
-    getFlights = (e) => {
-        this.setState({
-            hasDates: true,
-        })
+    componentWillMount() {
         this.getMidPoint();
-        let date1 = this.state.departure.split('-');
-        let date2 = this.state.return.split('-');
-        $.get(`http://developer.goibibo.com/api/search/?app_id=ad6a1a69&app_key=dcf3fe52cb4920b668f623315303b99f&format=json&source=${this.state.airport}&destination=${this.state.partner_airport}&dateofdeparture=${date1[0]}${date1[1]}${date1[2]}&dateofarrival=${date1[0]}${date1[1]}${date1[2]}&seatingclass=E&adults=1&children=0&infants=0&counter=100`)
-            .then(res => {
-                console.log(res);
-            }).catch(err => {
-                alert('error');
-            })
-        console.log(this.state)
     }
     componentDidMount() {
-        // this.getMidPoint();
+        this.getFlights();
     }
     handleChange = e => {
         e.preventDefault();

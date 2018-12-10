@@ -52,7 +52,20 @@ module.exports = function (app) {
             res.json(err)
         })
     })
-
+    //Allow midpoint send and closest airport retrieval
+    app.post('/api/midpoint',function(req,res){
+        db.sequelize.query(`SELECT id, ita,lattitude,longitude, ( 3959 * acos( cos( radians(${req.body.lat}) ) * cos( radians( lattitude ) ) 
+        * cos( radians( longitude ) - radians(${req.body.long}) ) + sin( radians(${req.body.lat}) ) * sin(radians(lattitude)) ) ) AS distance 
+        FROM airports 
+        HAVING distance < 200
+        ORDER BY distance 
+        LIMIT 0 , 20;
+        `).then(resp=>{
+            res.json(resp)
+        }).catch(err=>{
+            res.json(err)
+        })
+    })
     //Allowing Partner Updating
     app.put("/api/partners/:id", function(req, res) {
         db.Partner.update(
