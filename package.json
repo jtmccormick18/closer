@@ -42,6 +42,7 @@
     "react-router-dom": "^4.3.1",
     "react-select": "^2.1.2",
     "react-slideshow-image": "^1.0.9",
+    "react-social-icons": "^3.0.0",
     "react-transition-group": "^2.5.0",
     "reactstrap": "^6.5.0",
     "sequelize": "^4.41.2",
