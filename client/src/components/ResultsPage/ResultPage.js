@@ -151,7 +151,6 @@ class ResultPage extends React.Component {
         $.get(`https://developer.goibibo.com/api/search/?app_id=ad6a1a69&app_key=dcf3fe52cb4920b668f623315303b99f&format=json&source=${this.state.partner_airport}&destination=${destITACode}&dateofdeparture=${date1[0]}${date1[1]}${date1[2]}&seatingclass=E&adults=1&children=0&infants=0&counter=100`)
           .then(res => {
             let directFlights;
-            debugger;
             for (let i = 0; i < res.data.data.onwardflights.length; i++) {
               if (res.data.data.onwardflights[i].destination === destITACode) {
                 directFlights = res.data.data.onwardflights[i]
@@ -272,11 +271,8 @@ class ResultPage extends React.Component {
                       Your Flight Options:
                       <hr />
                     </Typography>
-                    {this.state.hasParams ? (<HotelDisplay
-                      width={this.state.settings22.width}
-                      height={this.state.settings22.height}
-                      src={this.state.params22}
-                    />) : (<div>please wait, rendering results</div>)}
+                    <Flights embark={this.state.userAir.origin} dest={this.state.userAir.destination} flightNo={this.state.userAir.flightno} airline={this.state.userAir.airline}/>
+                    <Flights embark={this.state.partnerAir.origin} dest={this.state.partnerAir.destination} flightNo={this.state.partnerAir.flightno} airline={this.state.partnerAir.airline}/>
                   </Paper>
                 </div>
               ) : (
