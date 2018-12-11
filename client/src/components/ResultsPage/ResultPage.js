@@ -38,22 +38,22 @@ function HotelDisplay(props) {
         allowFullScreen
       />
     </div>
-   );
-  }
-  HotelDisplay.propTypes = {
-    classes: PropTypes.object.isRequired
-  };
-  HotelDisplay = withStyles(styles)(HotelDisplay);
-  
-  const Flights = props => (
-    <div>
-      <h1>
-        {props.embark} to {props.dest}
-      </h1>
-      <p>Airline: {props.airline}</p>
-      <p>Flight Number: {props.flightNo}</p>
-    </div>
   );
+}
+HotelDisplay.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+HotelDisplay = withStyles(styles)(HotelDisplay);
+
+const Flights = props => (
+  <div>
+    <h1>
+      {props.embark} to {props.dest}
+    </h1>
+    <p>Airline: {props.airline}</p>
+    <p>Flight Number: {props.flightNo}</p>
+  </div>
+);
 
 class ResultPage extends React.Component {
   state = {
@@ -92,6 +92,7 @@ class ResultPage extends React.Component {
 
   };
   getFlights = (e) => {
+    this.getMidPoint();
     this.setState({
       hasDates: true,
     })
@@ -112,16 +113,14 @@ class ResultPage extends React.Component {
 
         $.get(`http://developer.goibibo.com/api/search/?app_id=ad6a1a69&app_key=dcf3fe52cb4920b668f623315303b99f&format=json&source=${this.state.airport}&destination=${destITACode}&dateofdeparture=${date1[0]}${date1[1]}${date1[2]}&seatingclass=E&adults=1&children=0&infants=0&counter=100`)
           .then(userFlights => {
-            console.log({userFlights})
-            let directFlights = {};
-            let cheapestFare = userFlights.data.data.onwardflights[0].fare.adulttotalfare;
+            console.log({ userFlights })
+            let directFlights;
             for (let i = 0; i < userFlights.data.data.onwardflights.length; i++) {
-              if (userFlights.data.data.onwardflights[i].destination === destITACode
-                && userFlights.data.data.onwardflights[i].fare.adulttotalfare < cheapestFare) {
-                cheapestFare = userFlights.data.data.onwardflights[i].fare.adulttotalfare;
+              if (userFlights.data.data.onwardflights[i].destination === destITACode) {
                 directFlights = userFlights.data.data.onwardflights[i]
               }
             }
+            console.log(directFlights)
             this.setState({
               userAir: directFlights
             })
@@ -129,16 +128,13 @@ class ResultPage extends React.Component {
 
         $.get(`http://developer.goibibo.com/api/search/?app_id=ad6a1a69&app_key=dcf3fe52cb4920b668f623315303b99f&format=json&source=${this.state.partner_airport}&destination=${destITACode}&dateofdeparture=${date1[0]}${date1[1]}${date1[2]}&seatingclass=E&adults=1&children=0&infants=0&counter=100`)
           .then(res => {
-            let directFlights = {};
-            console.log("partnerFlights:", res);
-            let cheapestFare = res.data.data.onwardflights[0].fare.adulttotalfare;
+            let directFlights;
             for (let i = 0; i < res.data.data.onwardflights.length; i++) {
-              if (res.data.data.onwardflights[i].destination === destITACode
-                && res.data.data.onwardflights[i].fare.adulttotalfare < cheapestFare) {
-                cheapestFare = res.data.data.onwardflights[i].fare.adulttotalfare;
+              if (res.data.data.onwardflights[i].destination === destITACode) {
                 directFlights = res.data.data.onwardflights[i]
               }
             }
+            console.log(directFlights)
             this.setState({
               partnerAir: directFlights,
               hasFlights: true
@@ -203,8 +199,6 @@ class ResultPage extends React.Component {
         })
       })
   }
-  componentWillMount() {
-  }
   componentDidMount() {
     this.getMidPoint();
   }
@@ -225,13 +219,9 @@ class ResultPage extends React.Component {
     });
   };
   componentDidUpdate = () => {
-
   }
   componentWillMount = () => {
-    this.getMidPoint();
-  }
-  componentDidMount = () => {
-
+   
   }
   handleChange = e => {
     e.preventDefault();
