@@ -84,6 +84,7 @@ class App extends React.Component {
                     <NavLink to="/register"><Button color="inherit">Register</Button></NavLink> </div>) : (<NavLink to="/"><Button color="inherit" onClick={this.logout}>Logout</Button></NavLink>)
                 }
               </Toolbar>
+             
             </AppBar>
 
             <Switch>
