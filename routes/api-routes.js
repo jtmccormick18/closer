@@ -54,7 +54,7 @@ module.exports = function (app) {
     })
     //Allow midpoint send and closest airport retrieval
     app.post('/api/midpoint',function(req,res){
-        db.sequelize.query(`SELECT id, ita,lattitude,longitude,airport, ( 3959 * acos( cos( radians(${req.body.lat}) ) * cos( radians( lattitude ) ) 
+        db.sequelize.query(`SELECT id, ita,lattitude,longitude,airport_name, ( 3959 * acos( cos( radians(${req.body.lat}) ) * cos( radians( lattitude ) ) 
         * cos( radians( longitude ) - radians(${req.body.long}) ) + sin( radians(${req.body.lat}) ) * sin(radians(lattitude)) ) ) AS distance 
         FROM airports 
         ORDER BY distance 
