@@ -12,6 +12,10 @@ import PartnerCreate from "./components/Partner";
 import Flight from "./components/ResultsPage/Flight";
 import PartnerUpdate from "./components/PartnerUpdate";
 import Hotel from './components/ResultsPage/Hotel';
+import BackgroundFade from './components/BackgroundFade'
+
+
+
 
 const styles = {
   root: {
@@ -37,7 +41,7 @@ class App extends React.Component {
   componentDidMount() {
     this.getUsers();
   }
-  childHandler= (ChildState) =>{
+  childHandler = (ChildState) => {
     console.log(ChildState.loggedIn)
     this.setState({
       isLoggedIn: ChildState.loggedIn,
@@ -73,17 +77,18 @@ class App extends React.Component {
                 <NavLink to="/register"><Button color="inherit">Register</Button></NavLink>
               </Toolbar>
             </AppBar>
-         
+        <BackgroundFade />
+       
 
             <Switch>
               <Route exact path='/' component={HomePage} />
               <Route exact path='/flight' component={Flight} />
               <Route exact path='/register' component={AccountCreate} />
-              <Route exact path='/results' component={ResultPage}/>
-              <Route exact path='/login' component={()=><Login action={this.childHandler}/>}/>
+              <Route exact path='/results' component={ResultPage} />
+              <Route exact path='/login' component={() => <Login action={this.childHandler} />} />
               <Route exact path='/partner' component={PartnerCreate} />
               <Route exact path='/updatepartner' component={PartnerUpdate} />
-              <Route exact path='/hotel' component = {Hotel} />
+              <Route exact path='/hotel' component={Hotel} />
               <Route path='*' component={ErrorPage} />
             </Switch>
           </div>

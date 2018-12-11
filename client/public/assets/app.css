@@ -1,5 +1,7 @@
 
-
+body{
+    background-image: url('assets/fancy-cushion/cubes/clsr.jpg')
+}
 .MuiToolbar-root-40 {
     background-color: lightgray;
 }
