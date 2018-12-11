@@ -12,7 +12,7 @@ import PartnerCreate from "./components/Partner";
 import Flight from "./components/ResultsPage/Flight";
 import PartnerUpdate from "./components/PartnerUpdate";
 import Hotel from './components/ResultsPage/Hotel';
-import BackgroundFade from './components/BackgroundFade'
+
 
 
 
@@ -78,7 +78,7 @@ class App extends React.Component {
                 <NavLink to="/register"><Button color="inherit">Register</Button></NavLink>
               </Toolbar>
             </AppBar>
-        <BackgroundFade />
+     
        
 
             <Switch>
