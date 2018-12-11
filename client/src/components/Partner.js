@@ -13,6 +13,8 @@ const PartnerForm = props => (
         Add Your Buddy
       </Typography>
       <hr />
+      {props.isNotRight && <Typography align="center" variant="p" color="error">Uh Oh! Please make sure you fill out all the forms</Typography>}
+
       <MenuItem>
         <span className="menuLabel">Name:</span>
         <input
@@ -36,7 +38,8 @@ const PartnerForm = props => (
 class PartnerCreate extends React.Component {
   state = {
     name: "",
-    airport: ""
+    airport: "",
+    isNotRight: false
   };
 
   handleChange = (e, values) => {
@@ -53,17 +56,16 @@ class PartnerCreate extends React.Component {
       name: this.state.name,
       partner_airport: this.state.airport
     };
-    console.log(userData);
+    if (!this.state.name || !this.state.airport){
+      this.setState({isNotRight:true})
+    } else {
     $.post(`/api/partners/${localStorage.clsr_id}`, userData)
       .then(resp => {
-        console.log(resp);
-        alert("Partner Updated!");
         window.location.replace('/results');
       })
       .catch(err => {
-        alert("Fill out the entire form!");
       });
-
+    }
 
   };
 
@@ -75,6 +77,7 @@ class PartnerCreate extends React.Component {
           nameVal={this.state.name}
           airVal={this.state.airport}
           submitPartner={this.createPartner}
+          isNotRight={this.state.isNotRight}
         />
       </div>
     );
