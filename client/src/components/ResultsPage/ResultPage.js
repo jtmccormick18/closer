@@ -9,7 +9,7 @@ import Grid from "@material-ui/core/Grid";
 import { Typography } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
+import Paper from "@material-ui/core/Paper"
 
 const styles = theme => ({
   root: {
@@ -38,8 +38,22 @@ function HotelDisplay(props) {
         allowFullScreen
       />
     </div>
-  )
-}
+   );
+  }
+  HotelDisplay.propTypes = {
+    classes: PropTypes.object.isRequired
+  };
+  HotelDisplay = withStyles(styles)(HotelDisplay);
+  
+  const Flights = props => (
+    <div>
+      <h1>
+        {props.embark} to {props.dest}
+      </h1>
+      <p>Airline: {props.airline}</p>
+      <p>Flight Number: {props.flightNo}</p>
+    </div>
+  );
 
 class ResultPage extends React.Component {
   state = {
@@ -88,52 +102,49 @@ class ResultPage extends React.Component {
       long: this.state.midpoint[1]
     }
     $.post('/api/midpoint', data)
-      .then(resp => {
+      .then(midpointRes => {
+        const destITACode = midpointRes.data[0][0].ita;
         this.setState({
-          destITACode: resp.data[0][0].ita,
-          destAirCoordinates: [resp.data[0][0].lattitude, resp.data[0][0].longitude],
-          destCity: resp.data[0][0].airport_name
+          destITACode: destITACode,
+          destAirCoordinates: [midpointRes.data[0][0].lattitude, midpointRes.data[0][0].longitude],
+          destCity: midpointRes.data[0][0].airport_name
         })
-      })
-      .then(resp => {
-        $.get(`http://developer.goibibo.com/api/search/?app_id=ad6a1a69&app_key=dcf3fe52cb4920b668f623315303b99f&format=json&source=${this.state.airport}&destination=${this.state.destITACode}&dateofdeparture=${date1[0]}${date1[1]}${date1[2]}&seatingclass=E&adults=1&children=0&infants=0&counter=100`)
-          .then(res => {
+
+        $.get(`http://developer.goibibo.com/api/search/?app_id=ad6a1a69&app_key=dcf3fe52cb4920b668f623315303b99f&format=json&source=${this.state.airport}&destination=${destITACode}&dateofdeparture=${date1[0]}${date1[1]}${date1[2]}&seatingclass=E&adults=1&children=0&infants=0&counter=100`)
+          .then(userFlights => {
+            console.log({userFlights})
             let directFlights = {};
-            let cheapestFare = res.data.data.onwardflights[0].fare.adulttotalfare;
-            for (let i = 0; i < res.data.data.onwardflights.length; i++) {
-              if (res.data.data.onwardflights[i].destination === this.state.destITACode
-                && res.data.onwardflights[i].fare.adulttotalfare < cheapestFare) {
-                cheapestFare = res.data.data.onwardflights[i].fare.adulttotalfare;
-                directFlights = res.data.data.onwardflights[i]
+            let cheapestFare = userFlights.data.data.onwardflights[0].fare.adulttotalfare;
+            for (let i = 0; i < userFlights.data.data.onwardflights.length; i++) {
+              if (userFlights.data.data.onwardflights[i].destination === destITACode
+                && userFlights.data.data.onwardflights[i].fare.adulttotalfare < cheapestFare) {
+                cheapestFare = userFlights.data.data.onwardflights[i].fare.adulttotalfare;
+                directFlights = userFlights.data.data.onwardflights[i]
               }
             }
             this.setState({
               userAir: directFlights
             })
           })
-      })
-      .then(resp => {
-        $.get(`http://developer.goibibo.com/api/search/?app_id=ad6a1a69&app_key=dcf3fe52cb4920b668f623315303b99f&format=json&source=${this.state.partner_airport}&destination=${this.state.destITACode}&dateofdeparture=${date1[0]}${date1[1]}${date1[2]}&seatingclass=E&adults=1&children=0&infants=0&counter=100`)
+
+        $.get(`http://developer.goibibo.com/api/search/?app_id=ad6a1a69&app_key=dcf3fe52cb4920b668f623315303b99f&format=json&source=${this.state.partner_airport}&destination=${destITACode}&dateofdeparture=${date1[0]}${date1[1]}${date1[2]}&seatingclass=E&adults=1&children=0&infants=0&counter=100`)
           .then(res => {
             let directFlights = {};
+            console.log("partnerFlights:", res);
             let cheapestFare = res.data.data.onwardflights[0].fare.adulttotalfare;
             for (let i = 0; i < res.data.data.onwardflights.length; i++) {
-              if (res.data.data.onwardflights[i].destination === this.state.destITACode
-                && res.data.onwardflights[i].fare.adulttotalfare < cheapestFare) {
+              if (res.data.data.onwardflights[i].destination === destITACode
+                && res.data.data.onwardflights[i].fare.adulttotalfare < cheapestFare) {
                 cheapestFare = res.data.data.onwardflights[i].fare.adulttotalfare;
                 directFlights = res.data.data.onwardflights[i]
               }
             }
             this.setState({
-              partnerAir: directFlights
+              partnerAir: directFlights,
+              hasFlights: true
             })
           })
-      })
-      .then(res => {
-        this.setState({
-          hasFlights: true
-        })
-      })
+      });
   }
 
   getMidPoint = () => {
@@ -195,6 +206,7 @@ class ResultPage extends React.Component {
   componentWillMount() {
   }
   componentDidMount() {
+    this.getMidPoint();
   }
   handleChange = e => {
     e.preventDefault();
