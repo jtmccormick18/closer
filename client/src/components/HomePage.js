@@ -70,7 +70,8 @@ import { Zoom } from "react-slideshow-image";
 const images = [
   "https://apis.xogrp.com/media-api/images/19a8d720-a157-4058-ad4e-bf45e3f31ede",
   "http://medicarepharmabusiness.com/wp-content/uploads/2018/01/08-Marriage-Advice-7-Relationship-Tips-to-Get-the-Love-You-Want-1024x683.jpg",
-  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9jwolNsjZRKiIrNt9s-zdpcEahqOINAAoscWUn9c_bJltkOmB"
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9jwolNsjZRKiIrNt9s-zdpcEahqOINAAoscWUn9c_bJltkOmB",
+  "https://image.freepik.com/free-photo/lesbian-couple-dating-in-a-park_53876-46900.jpg"
 ];
 
 const zoomOutProperties = {
