@@ -69,7 +69,7 @@ class App extends React.Component {
             <AppBar position="static">
               <Toolbar>
                 <Link to='/'><IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-                  <img alt="closerLogo" src="././assets/clsr.logo.png" height="40px" /></IconButton>
+                  <img alt="closerLogo" src="././assets/clsr.logo-WHITE.png" height="40px" /></IconButton>
                 </Link>
                 <Typography variant="h6" color="inherit" className={`${classes.grow} ${classes.title}`}>
                   Closer

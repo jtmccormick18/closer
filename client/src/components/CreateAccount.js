@@ -54,7 +54,7 @@ const Form = props => (
           onChange={props.handleChange}
         />
       </MenuItem>
-      <MenuItem>
+      {/* <MenuItem>
         <span className="menuLabel">Budget:</span>
         <input
           className="menuitem"
@@ -63,7 +63,7 @@ const Form = props => (
           value={props.budgetVal}
           onChange={props.handleChange}
         />
-      </MenuItem>
+      </MenuItem> */}
       <Airport onChange={props.handleChange} currAirport={props.airVal} />
       <div className="buttonbox">
         <Button align="center" type="submit" onClick={props.submitUser}>
