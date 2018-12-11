@@ -91,7 +91,6 @@ class YourPartner extends React.Component {
   };
   componentDidMount() {
     $.get(`/api/partners/${localStorage.clsr_id}`).then(res => {
-      console.log(res);
       this.setState({
         partnerName: res.data.name,
         partnerAirport: res.data.partner_airport
@@ -100,19 +99,19 @@ class YourPartner extends React.Component {
   }
   handleOpen = () => {
     this.setState({ open: true });
-    console.log(this.state)
+   
   };
   handleClose = () => {
     this.setState({ open: false });
-    console.log(this.state)
+    
   };
   childHandler= (ChildState) =>{
-      console.log("function is happening")
+  
     this.setState({
       partnerName: ChildState.name,
       partnerAirport: ChildState.airport
     })
-    console.log("YourPartner State Updated")
+  
   }
 
 
@@ -123,8 +122,8 @@ class YourPartner extends React.Component {
         <SimpleCard
           partnerName={`${localStorage.clsr_username}`}
           partnerAirport={`${localStorage.clsr_airport}`}
-          cardTitle={"Currently Logged in As:"}
-          buttonName={"logout"}
+          cardTitle={"Welcome,"}
+          buttonName={"Logout"}
           cardSubTitle={"Your Airport"}
         />
 

@@ -12,19 +12,22 @@ module.exports = function(connection, Sequelize) {
           allowNull:false
       },
       password: {
-          type:Sequelize.STRING
+          type:Sequelize.STRING,
+          allowNull:false
       },
       email:{
           type:Sequelize.STRING,
-          isEmail:true
+          isEmail:true,
+          allowNull:false
       },
       nickname:{
           type:Sequelize.STRING,
-          allowNull:true
+          allowNull:false
       },
       airport: {
           type:Sequelize.STRING,
-          isIn:[['ATL','LAX','ORD','DFW','DEN','JFK','SFO','LAS','SEA','CLT','EWR','MCO','PHX','MIA','IAH','BOS','MSP','DTW','FLL','PHL','LGA','BWI','SLC','DCA','IAD','SAN','MDW','TPA','HNL','PDX']]
+          isIn:[['ATL','LAX','ORD','DFW','DEN','JFK','SFO','LAS','SEA','CLT','EWR','MCO','PHX','MIA','IAH','BOS','MSP','DTW','FLL','PHL','LGA','BWI','SLC','DCA','IAD','SAN','MDW','TPA','HNL','PDX']],
+          allowNull: false
       },
       budget:{
         type:Sequelize.INTEGER,

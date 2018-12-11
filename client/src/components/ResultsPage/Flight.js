@@ -15,18 +15,24 @@ const FlightTable = (props) => (
                 Enter Departure and Arrival Date
             </Typography>
             <hr />
-            <MenuItem className="menuitem">
+            <MenuItem >
+                <span className="menuitem">
                 When would you like to leave?
+                </span> 
                 <input
+                    className="menuitem"
                     type="date"
                     name="departure"
                     value={props.dVal}
                     onChange={props.handleChange}
                 />
             </MenuItem>
-            <MenuItem className="menuitem">
-                When do you plan to come home?
+            <MenuItem >
+            <span className="menuitem">
+                When do you plan to come home?   
+            </span>
                 <input
+                    className="menuitem"
                     type="date"
                     name="return"
                     value={props.aVal}

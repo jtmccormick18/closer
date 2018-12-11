@@ -14,6 +14,8 @@ const Form = props => (
         Login
       </Typography>
       <hr />
+      {props.isValid && <Typography align="center" variant="p" color="error">Incorrect Login! Please try again.</Typography>}
+
       <MenuItem>
         <span className="menuLabel">Username:</span>
         <input
@@ -46,7 +48,8 @@ class Login extends React.Component {
     username: "",
     password: "",
     loggedIn: false,
-    hasPartner: false
+    hasPartner: false,
+    inValidLogin: false
   };
 
   componentDidUpdate = (prevProps, prevState) => {
@@ -71,8 +74,8 @@ class Login extends React.Component {
     };
     $.post("/login", userData)
       .then(resp => {
-        alert("Login Successful!");
-        this.setState({ loggedIn: true });
+
+        this.setState({ loggedIn: true});
         localStorage.token = resp.data.token;
         localStorage.clsr_id = resp.data.id;
         localStorage.clsr_username = resp.data.username;
@@ -87,11 +90,11 @@ class Login extends React.Component {
             hasPartner: this.state.hasPartner
           })
         } else {
-          console.log("NO SIR")
+          
         }
       })
       .catch(err => {
-        alert("Username or Password is incorrect");
+        this.setState({inValidLogin: true})
       });
   };
   render() {
@@ -103,6 +106,7 @@ class Login extends React.Component {
           userVal={this.state.username}
           passVal={this.state.password}
           submitUser={this.loginUser}
+          isValid={this.state.inValidLogin}
         />
       </div>
     );

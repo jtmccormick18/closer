@@ -13,6 +13,7 @@ const Form = props => (
         Register
       </Typography>
       <hr />
+      {props.isValid && <Typography align="center" variant="p" color="error">Oops! Something went wrong. please try again</Typography>}
       <MenuItem>
         <span className="menuLabel">Username:</span>
         <input
@@ -99,18 +100,20 @@ class AccountCreate extends React.Component {
       password: this.state.password,
       nickname: this.state.nickname,
       airport: this.state.airport,
-      email: this.state.email
+      email: this.state.email,
+      inValidLogin: false
     };
     console.log(userData);
-    $.post("/api/users", userData)
-      .then(resp => {
-        console.log(resp);
-        alert("Thanks for Creating an account, Please Login to continue.");
-        window.location.replace('/login');
-      })
-      .catch(err => {
-        alert("Fill out the entire form!");
-      });
+    if(!this.state.username || !this.state.password || !this.state.nickname || !this.state.airport || !this.state.email ) {this.setState({inValidLogin: true})} else {
+      $.post("/api/users", userData)
+        .then(resp => {
+        
+          window.location.replace('/login');
+        })
+        .catch(err => {
+          this.setState({inValidLogin: true})
+        });
+    }
   };
 
   render() {
@@ -124,6 +127,7 @@ class AccountCreate extends React.Component {
           airVal={this.state.airport}
           eVal={this.state.email}
           submitUser={this.createUser}
+          isValid={this.state.inValidLogin}
         />
       </div>
     );

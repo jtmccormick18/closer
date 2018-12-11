@@ -13,7 +13,8 @@ const PartnerForm = props => (
         Update your Buddy
       </Typography>
       <hr />
-      {props.isUpdated && <Typography align="center" variant="h5" color="error">Updated! Click close to continue</Typography>}
+      {props.isUpdated && <Typography align="center" variant="p" color="error">Updated! Click close to continue</Typography>}
+      {props.isNotRight && <Typography align="center" variant="p" color="error">Uh Oh! Please make sure you fill out all the forms</Typography>}
       <MenuItem>
         <span className="menuLabel">Name:</span>
         <input
@@ -42,7 +43,8 @@ class PartnerUpdate extends React.Component {
   state = {
     name: "",
     airport: "",
-    isUpdated: false
+    isUpdated: false,
+    isNotRight: false
   };
 
   handleChange = (e, values) => {
@@ -61,22 +63,25 @@ class PartnerUpdate extends React.Component {
       partner_airport: this.state.airport
     };
     if (!this.state.name || !this.state.airport){
-      return alert("yo")
-    } 
-    $.put(`/api/partners/${localStorage.clsr_id}`, userData)
-      .then(resp => {
-        console.log(this.state);
-        this.props.action({
-          name: this.state.name,
-          airport: this.state.airport
-        })
-        this.setState({
-          isUpdated: true
+      this.setState({isNotRight:true})
+    } else {
+
+      $.put(`/api/partners/${localStorage.clsr_id}`, userData)
+        .then(resp => {
+          console.log(this.state);
+          this.props.action({
+            name: this.state.name,
+            airport: this.state.airport
+          })
+          this.setState({
+            isUpdated: true,
+            isNotRight: false
+          });
+        }) 
+        .catch(err => {
+          
         });
-      }) 
-      .catch(err => {
-        alert("Fill out the entire form!");
-      });
+    }
   };
 
   render() {
@@ -89,6 +94,7 @@ class PartnerUpdate extends React.Component {
           submitPartner={this.updatePartner}
           closeModal={this.props.onClose}
           isUpdated={this.state.isUpdated}
+          isNotRight={this.state.isNotRight}
         />
       </div>
     );
