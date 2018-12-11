@@ -13,6 +13,7 @@ const PartnerForm = props => (
         Update your Buddy
       </Typography>
       <hr />
+      {props.isUpdated && <Typography align="center" variant="h5" color="error">Updated! Click close to continue</Typography>}
       <MenuItem>
         <span className="menuLabel">Name:</span>
         <input
@@ -26,8 +27,12 @@ const PartnerForm = props => (
       <Airport onChange={props.handleChange} currAirport={props.airVal} />
       <div className="buttonbox">
         <Button align="center" type="submit" onClick={props.submitPartner}>
-          Add Buddy
+          Update
         </Button>
+        <Button align="center" type="submit" onClick={props.closeModal}>
+          close
+        </Button>
+
       </div>
     </form>
   </Grid>
@@ -36,7 +41,8 @@ const PartnerForm = props => (
 class PartnerUpdate extends React.Component {
   state = {
     name: "",
-    airport: ""
+    airport: "",
+    isUpdated: false
   };
 
   handleChange = (e, values) => {
@@ -46,7 +52,7 @@ class PartnerUpdate extends React.Component {
       [name]: value
     });
   };
-
+  
     updatePartner = e => {
     e.preventDefault();
     const userData = {
@@ -54,12 +60,17 @@ class PartnerUpdate extends React.Component {
       name: this.state.name,
       partner_airport: this.state.airport
     };
-    console.log(userData);
     $.put(`/api/partners/${localStorage.clsr_id}`, userData)
       .then(resp => {
-        console.log(resp);
-        alert("Partner Updated! ");
-      })
+        console.log(this.state);
+        this.props.action({
+          name: this.state.name,
+          airport: this.state.airport
+        })
+        this.setState({
+          isUpdated: true
+        });
+      }) 
       .catch(err => {
         alert("Fill out the entire form!");
       });
@@ -73,6 +84,8 @@ class PartnerUpdate extends React.Component {
           nameVal={this.state.name}
           airVal={this.state.airport}
           submitPartner={this.updatePartner}
+          closeModal={this.props.onClose}
+          isUpdated={this.state.isUpdated}
         />
       </div>
     );

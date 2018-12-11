@@ -74,7 +74,7 @@ module.exports = function (app) {
           { where: { UserId: req.params.id } }
         )
           .then(success => {
-            res.json(success);
+            res.json();
           })
           .catch(err => {
             res.json(err);
@@ -130,6 +130,8 @@ module.exports = function (app) {
                     res.json({
                         token: token,
                         id: user.id,
+                        username: user.username,
+                        airport: user.airport
                     }).catch(err => {
                         res.json({ err });
                     });
