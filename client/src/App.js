@@ -12,6 +12,10 @@ import PartnerCreate from "./components/Partner";
 import Flight from "./components/ResultsPage/Flight";
 import PartnerUpdate from "./components/PartnerUpdate";
 import Hotel from './components/ResultsPage/Hotel';
+import BackgroundFade from './components/BackgroundFade'
+
+
+
 import PrivateRoute from "./components/PrivateRoute";
 
 const styles = {
@@ -38,7 +42,7 @@ class App extends React.Component {
   componentDidMount() {
     this.getUsers();
   }
-  childHandler= (ChildState) =>{
+  childHandler = (ChildState) => {
     console.log(ChildState.loggedIn)
     this.setState({
       isLoggedIn: ChildState.loggedIn,
@@ -74,7 +78,8 @@ class App extends React.Component {
                 <NavLink to="/register"><Button color="inherit">Register</Button></NavLink>
               </Toolbar>
             </AppBar>
-         
+        <BackgroundFade />
+       
 
             <Switch>
               <Route exact path='/' component={HomePage} />
