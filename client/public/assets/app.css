@@ -69,6 +69,14 @@ Button{
     padding-top: 30px;
 }
 
+#errorCard{
+    background-image: linear-gradient( #e7e7e7, white);
+    border-radius: 10px;
+    box-shadow:5px 5px 30px 5px dimgray;
+    padding: 10px;
+    width: 50%;
+    margin-top: 40px;
+}
 @font-face {
     font-family: 'Yellowtail', cursive;
     src: url(https://fonts.googleapis.com/css?family=Yellowtail)

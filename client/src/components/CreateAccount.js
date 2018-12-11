@@ -10,7 +10,7 @@ const Form = props => (
   <Grid container justify="center">
     <form className="createAccountForm">
       <Typography align="center" variant="h4" color="inherit">
-        Create an Account
+        Register
       </Typography>
       <hr />
       <MenuItem>
