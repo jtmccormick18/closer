@@ -9,12 +9,13 @@ import Typography from "@material-ui/core/Typography";
 import * as $ from "axios";
 import Modal from "@material-ui/core/Modal";
 import PartnerUpdate from "../PartnerUpdate";
+import 'typeface-roboto';
 
 const styles = {
   card: {
     minWidth: 275,
     width: 275,
-    margin: 30
+    marginTop: 20,
   },
   bullet: {
     display: "inline-block",
@@ -26,6 +27,10 @@ const styles = {
   },
   pos: {
     marginBottom: 12
+  },
+  paper:{
+    backgroundColor: 'lightgrey',
+    alignItems: 'right'
   }
 };
 
@@ -33,7 +38,7 @@ function SimpleCard(props) {
   const { classes } = props;
 
   return (
-    <Card className={classes.card}>
+    <Card id="cardDesign" className={classes.card}>
       <CardContent>
         <Typography
           className={classes.title}
@@ -53,7 +58,7 @@ function SimpleCard(props) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" onClick={props.open}>
+        <Button size="small" align="right" className={classes.paper} onClick={props.open}>
           {props.buttonName}
         </Button>
       </CardActions>
