@@ -49,7 +49,22 @@ class Login extends React.Component {
     hasPartner: false
   };
 
-  componentDidMount() {}
+  // redirect = () => {
+  //   if(localStorage.token && this.state.hasPartner === true){
+  //    return window.location.replace('/results');
+  //   } else if (localStorage.token && this.state.hasPartner ===false){
+  //     return window.location.replace('/partner');
+  //   }
+  // }
+
+  componentDidUpdate = (prevProps, prevState) => {
+    if (prevState.hasPartner !== this.state.hasPartner) {
+     return  window.location.replace('/results');
+    } else if (prevState.hasPartner === this.state.hasPartner && prevState.loggedIn !== this.state.loggedIn) {
+     return window.location.replace('/partner');
+    }
+  }
+  
   handleChange = e => {
     e.preventDefault();
     this.setState({

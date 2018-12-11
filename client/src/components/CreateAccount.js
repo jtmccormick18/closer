@@ -80,8 +80,7 @@ class AccountCreate extends React.Component {
     password: "",
     nickname: "",
     airport: "",
-    email: "",
-    budget: ""
+    email: ""
   };
 
   componentDidMount() {}
@@ -100,14 +99,14 @@ class AccountCreate extends React.Component {
       password: this.state.password,
       nickname: this.state.nickname,
       airport: this.state.airport,
-      email: this.state.email,
-      budget: this.state.budget
+      email: this.state.email
     };
     console.log(userData);
     $.post("/api/users", userData)
       .then(resp => {
         console.log(resp);
         alert("Thanks for Creating an account, Please Login to continue.");
+        window.location.replace('/login');
       })
       .catch(err => {
         alert("Fill out the entire form!");
@@ -123,7 +122,6 @@ class AccountCreate extends React.Component {
           passVal={this.state.password}
           nickVal={this.state.nickname}
           airVal={this.state.airport}
-          budgetVal={this.state.budget}
           eVal={this.state.email}
           submitUser={this.createUser}
         />

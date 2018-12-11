@@ -50,7 +50,6 @@ class PartnerCreate extends React.Component {
   createPartner = e => {
     e.preventDefault();
     const userData = {
-  
       name: this.state.name,
       partner_airport: this.state.airport
     };
@@ -59,10 +58,13 @@ class PartnerCreate extends React.Component {
       .then(resp => {
         console.log(resp);
         alert("Partner Updated!");
+        window.location.replace('/results');
       })
       .catch(err => {
         alert("Fill out the entire form!");
       });
+
+
   };
 
   render() {
