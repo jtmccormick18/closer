@@ -12,7 +12,7 @@ import PartnerCreate from "./components/Partner";
 import Flight from "./components/ResultsPage/Flight";
 import PartnerUpdate from "./components/PartnerUpdate";
 import Hotel from './components/ResultsPage/Hotel';
-import BackgroundFade from './components/BackgroundFade'
+
 
 
 
@@ -69,7 +69,7 @@ class App extends React.Component {
             <AppBar position="static">
               <Toolbar>
                 <Link to='/'><IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-                  <img alt="closerLogo" src="././assets/clsr.logo.png" height="40px" /></IconButton>
+                  <img alt="closerLogo" src="././assets/clsr.logo-WHITE.png" height="40px" /></IconButton>
                 </Link>
                 <Typography variant="h6" color="inherit" className={`${classes.grow} ${classes.title}`}>
                   Closer
@@ -78,7 +78,7 @@ class App extends React.Component {
                 <NavLink to="/register"><Button color="inherit">Register</Button></NavLink>
               </Toolbar>
             </AppBar>
-        <BackgroundFade />
+     
        
 
             <Switch>
