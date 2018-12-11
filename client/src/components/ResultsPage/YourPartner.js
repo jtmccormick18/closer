@@ -113,8 +113,11 @@ class YourPartner extends React.Component {
       partnerAirport: ChildState.airport
     })
     console.log("YourPartner State Updated")
-  }
-
+  };
+  logout = () => {
+    localStorage.clear();
+    window.location.replace("/");
+  };
 
   render() {
     const { classes } = this.props;
@@ -126,6 +129,7 @@ class YourPartner extends React.Component {
           cardTitle={"Currently Logged in As:"}
           buttonName={"logout"}
           cardSubTitle={"Your Airport"}
+          open={this.logout}
         />
 
         <SimpleCard
