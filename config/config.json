@@ -1,7 +1,11 @@
 {
     "development": {
       "username": "root",
+<<<<<<< HEAD
       "password": "password",
+=======
+      "password": "avw57966",
+>>>>>>> 0e729df348876f4d6f5138f801341c11134c4236
       "database": "clsr_db",
       "host": "127.0.0.1",
       "port": 3306,

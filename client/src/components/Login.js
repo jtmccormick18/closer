@@ -68,6 +68,8 @@ class Login extends React.Component {
         this.setState({ loggedIn: true });
         localStorage.token = resp.data.token;
         localStorage.clsr_id = resp.data.id;
+        localStorage.clsr_username = resp.data.username;
+        localStorage.clsr_airport= resp.data.airport;
         return $.get(`/api/partners/${localStorage.clsr_id}`);
       })
       .then(partners => {

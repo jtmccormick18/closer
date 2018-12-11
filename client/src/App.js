@@ -16,6 +16,7 @@ import BackgroundFade from './components/BackgroundFade'
 
 
 
+import PrivateRoute from "./components/PrivateRoute";
 
 const styles = {
   root: {
@@ -82,13 +83,13 @@ class App extends React.Component {
 
             <Switch>
               <Route exact path='/' component={HomePage} />
-              <Route exact path='/flight' component={Flight} />
+              <PrivateRoute exact path='/flight' component={Flight} />
               <Route exact path='/register' component={AccountCreate} />
-              <Route exact path='/results' component={ResultPage} />
-              <Route exact path='/login' component={() => <Login action={this.childHandler} />} />
-              <Route exact path='/partner' component={PartnerCreate} />
-              <Route exact path='/updatepartner' component={PartnerUpdate} />
-              <Route exact path='/hotel' component={Hotel} />
+              <PrivateRoute exact path='/results' component={ResultPage}/>
+              <Route exact path='/login' component={()=><Login action={this.childHandler}/>}/>
+              <PrivateRoute exact path='/partner' component={PartnerCreate} />
+              <PrivateRoute exact path='/updatepartner' component={PartnerUpdate} />
+              <PrivateRoute exact path='/hotel' component = {Hotel} />
               <Route path='*' component={ErrorPage} />
             </Switch>
           </div>
