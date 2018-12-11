@@ -60,6 +60,9 @@ class PartnerUpdate extends React.Component {
       name: this.state.name,
       partner_airport: this.state.airport
     };
+    if (!this.state.name || !this.state.airport){
+      return alert("yo")
+    } 
     $.put(`/api/partners/${localStorage.clsr_id}`, userData)
       .then(resp => {
         console.log(this.state);
