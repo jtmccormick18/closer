@@ -12,10 +12,6 @@ import PartnerCreate from "./components/Partner";
 import Flight from "./components/ResultsPage/Flight";
 import PartnerUpdate from "./components/PartnerUpdate";
 import Hotel from './components/ResultsPage/Hotel';
-
-
-
-
 import PrivateRoute from "./components/PrivateRoute";
 
 const styles = {
@@ -60,6 +56,12 @@ class App extends React.Component {
     });
   };
 
+  logout = () => {
+    localStorage.clear();
+    window.location.replace("/");
+  }
+
+
   render() {
     const { classes } = this.props;
     return (
@@ -74,22 +76,23 @@ class App extends React.Component {
                 <Typography variant="h6" color="inherit" className={`${classes.grow} ${classes.title}`}>
                   Closer
               </Typography>
-                <NavLink to='/login'><Button color="inherit">Login</Button></NavLink>
-                <NavLink to="/register"><Button color="inherit">Register</Button></NavLink>
+                {!localStorage.token ? (
+                  <div>
+                    <NavLink to='/login'><Button color="inherit">Login</Button></NavLink>
+                    <NavLink to="/register"><Button color="inherit">Register</Button></NavLink> </div>) : (<NavLink to="/"><Button color="inherit" onClick={this.logout}>Logout</Button></NavLink>)
+                }
               </Toolbar>
             </AppBar>
-     
-       
 
             <Switch>
               <Route exact path='/' component={HomePage} />
               <PrivateRoute exact path='/flight' component={Flight} />
               <Route exact path='/register' component={AccountCreate} />
-              <PrivateRoute exact path='/results' component={ResultPage}/>
-              <Route exact path='/login' component={()=><Login action={this.childHandler}/>}/>
+              <PrivateRoute exact path='/results' component={ResultPage} />
+              <Route exact path='/login' component={() => <Login action={this.childHandler} />} />
               <PrivateRoute exact path='/partner' component={PartnerCreate} />
               <PrivateRoute exact path='/updatepartner' component={PartnerUpdate} />
-              <PrivateRoute exact path='/hotel' component = {Hotel} />
+              <PrivateRoute exact path='/hotel' component={Hotel} />
               <Route path='*' component={ErrorPage} />
             </Switch>
           </div>
