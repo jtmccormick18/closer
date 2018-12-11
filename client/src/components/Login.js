@@ -49,14 +49,6 @@ class Login extends React.Component {
     hasPartner: false
   };
 
-  // redirect = () => {
-  //   if(localStorage.token && this.state.hasPartner === true){
-  //    return window.location.replace('/results');
-  //   } else if (localStorage.token && this.state.hasPartner ===false){
-  //     return window.location.replace('/partner');
-  //   }
-  // }
-
   componentDidUpdate = (prevProps, prevState) => {
     if (prevState.hasPartner !== this.state.hasPartner) {
      return  window.location.replace('/results');
@@ -64,7 +56,7 @@ class Login extends React.Component {
      return window.location.replace('/partner');
     }
   }
-  
+
   handleChange = e => {
     e.preventDefault();
     this.setState({
