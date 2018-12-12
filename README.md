@@ -36,7 +36,7 @@ This project could be useful for people in long distance relationships
 #### Created and maintained by Alex Watkins, Anmarie Smith, Josh McCormick, Neel Bhandari, and Wayne Hong 
 [Alex Watkins](https://afw821.github.io/Portfolio-Website/)
 
-[Anmarie Smith](https://afw821.github.io/Portfolio-Website/)
+[Anmarie Smith](https://anmariesmith.github.io/AboutMe/)
 
 [Josh McCormick](https://jtmccormick18.github.io/)
 
