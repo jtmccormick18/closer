@@ -13,6 +13,7 @@ import Flight from "./components/ResultsPage/Flight";
 import PartnerUpdate from "./components/PartnerUpdate";
 import Hotel from './components/ResultsPage/Hotel';
 import PrivateRoute from "./components/PrivateRoute";
+import AboutPage from './components/AboutPage';
 
 const styles = {
   root: {
@@ -82,7 +83,8 @@ class App extends React.Component {
                 {!localStorage.token ? (
                   <div>
                     <NavLink to='/login'><Button color="inherit">Login</Button></NavLink>
-                    <NavLink to="/register"><Button color="inherit">Register</Button></NavLink> </div>) : 
+                    <NavLink to="/register"><Button color="inherit">Register</Button></NavLink>
+                    <NavLink to="/about"><Button color="inherit">About Us</Button></NavLink> </div>) : 
                     (<div>
                       <NavLink to="/"><Button color="inherit" onClick={this.logout}>Logout</Button></NavLink>
                       <NavLink to="/"><Button color="inherit" onClick={this.resultsPage}>Results</Button></NavLink>
@@ -94,6 +96,7 @@ class App extends React.Component {
 
             <Switch>
               <Route exact path='/' component={HomePage} />
+              <Route exact path='/about' component={AboutPage} />
               <PrivateRoute exact path='/flight' component={Flight} />
               <Route exact path='/register' component={AccountCreate} />
               <PrivateRoute exact path='/results' component={ResultPage} />

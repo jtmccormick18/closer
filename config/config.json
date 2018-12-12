@@ -1,15 +1,7 @@
 {
     "development": {
       "username": "root",
-<<<<<<< HEAD
-<<<<<<< HEAD
       "password": "password",
-=======
-      "password": "georgia18",
->>>>>>> be5bd89195cc62eae097f7f2bfe967cc6be5a342
-=======
-      "password": "openme",
->>>>>>> 16693d8c274a8f6fdd81a70c9f28817624eeec25
       "database": "clsr_db",
       "host": "127.0.0.1",
       "port": 3306,
