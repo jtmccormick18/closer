@@ -61,6 +61,7 @@ class App extends React.Component {
     window.location.replace("/");
   }
 
+  resultsPage =() => (window.location.replace('/results'));
 
   render() {
     const { classes } = this.props;
@@ -81,7 +82,11 @@ class App extends React.Component {
                 {!localStorage.token ? (
                   <div>
                     <NavLink to='/login'><Button color="inherit">Login</Button></NavLink>
-                    <NavLink to="/register"><Button color="inherit">Register</Button></NavLink> </div>) : (<NavLink to="/"><Button color="inherit" onClick={this.logout}>Logout</Button></NavLink>)
+                    <NavLink to="/register"><Button color="inherit">Register</Button></NavLink> </div>) : 
+                    (<div>
+                      <NavLink to="/"><Button color="inherit" onClick={this.logout}>Logout</Button></NavLink>
+                      <NavLink to="/"><Button color="inherit" onClick={this.resultsPage}>Results</Button></NavLink>
+                      </div>)
                 }
               </Toolbar>
              
