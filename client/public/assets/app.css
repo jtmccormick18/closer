@@ -7,7 +7,7 @@ body{
 #gradient
 {
  width: 100%;
- height: 1000px;
+ height: 1500px;
  padding: 0px;
  margin: 0px;
 }
@@ -81,4 +81,3 @@ Button{
     font-family: 'Yellowtail', cursive;
     src: url(https://fonts.googleapis.com/css?family=Yellowtail)
   }
-

@@ -1,44 +1,46 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Project 3 - CLSR
 
-## Available Scripts
+## Overview
+For this project, we built an application geared towards people in long distance relationships, giving them the ability to find flights and hotels at a midpoint between their two locations.
+- - - 
+### Usefullness 
+This project could be useful for people in long distance relationships
+- - - 
+### Technologies Used
+*HTML5
 
-In the project directory, you can run:
+*CSS3
 
-### `npm start`
+*MySQL & Sequelize
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+*APIs- GOIBIBO & Stayy22
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+*React
 
-### `npm test`
+*Node/Express
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+*JWT
 
-### `npm run build`
+*Bcrypt
+- - - 
+### Instructions
+1. When you open the page, you will see the home page. There are two options in the top right corner, Login  & Register
+3. If you have an account, you can login using your login credentials. If you do not have an account, you can click Register and fill out the appropriate fields . 
+4. Once you register, it will take you to the login page to login. 
+5. When you login, it will determine whether or not you have a buddy in the system- if you do, it will direct you to the Results page to chose dates for your trip . If you do not, it will give you the option to add your buddy. You must add a buddy to go to the next page. 
+6. Once you are at the Results page, select the dates you will be traveling. 
+7. Once you select the dates you will be traveling, it will redirect you to the Results page that will show you available hotels in that area and the flight found for you and your partner. 
+- - - 
+### Get Help/ Ask Questions
+* If you have any questions, please feel free to reach out through github.
+#### Created and maintained by Alex Watkins, Anmarie Smith, Josh McCormick, Neel Bhandari, and Wayne Hong 
+[Alex Watkins](https://afw821.github.io/Portfolio-Website/)
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+[Anmarie Smith](https://afw821.github.io/Portfolio-Website/)
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+[Josh McCormick](https://jtmccormick18.github.io/)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+[Neel Bhandari](https://neelbhandari.me)
 
-### `npm run eject`
+[Wayne Hong](https://sukjunehong.com/)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
