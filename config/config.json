@@ -1,7 +1,11 @@
 {
     "development": {
       "username": "root",
+<<<<<<< Updated upstream
       "password": "openme",
+=======
+      "password": "Wayne0126!",
+>>>>>>> Stashed changes
       "database": "clsr_db",
       "host": "127.0.0.1",
       "port": 3306,
