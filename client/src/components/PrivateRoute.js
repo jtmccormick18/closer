@@ -29,7 +29,6 @@ class PrivateRoute extends React.Component {
 
     render() {
         const { component: Component, ...rest } = this.props;
-        console.log(this.state.validToken, "in private route");
         return (
             this.state.validToken !== null && <Route {...rest} render={props => this.state.validToken ? (
                     <Component {...props} />

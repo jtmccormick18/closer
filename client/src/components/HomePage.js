@@ -49,7 +49,7 @@ function MediaCard(props) {
         <CardMedia className={classes.media}>
           <Zoom {...zoomOutProperties}>
             {images.map((each, index) => (
-              <img key={index} style={{ width: "100%" }} src={each} />
+              <img key={index} style={{ width: "100%" }} src={each} alt="slideshow" />
             ))}
           </Zoom>
         </CardMedia>

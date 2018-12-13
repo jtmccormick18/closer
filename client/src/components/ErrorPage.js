@@ -9,7 +9,7 @@ const Error=() => (
                     Uh oh, looks like you lost your way
                     <br />
                   </Typography>
-        <img src= "https://media.giphy.com/media/zo5k8p5YbogY8/giphy.gif"/>
+        <img src= "https://media.giphy.com/media/zo5k8p5YbogY8/giphy.gif" alt="404"/>
         <Typography align="center" variant="h6" gutterBottom>
                     Click o the CLSR logo in the lop left to redirect back to the home page. 
                     <br />

@@ -90,17 +90,6 @@ FlightCard.propTypes = {
 };
 FlightCard = withStyles(styles)(FlightCard);
 
-// const Flights = props => (
-//   <div>
-//     <h1>
-//       {props.embark} to {props.dest}
-//     </h1>
-//     <p>Airline: {props.airline}</p>
-//     <p>Flight Number: {props.flightNo}</p>
-//     <p>Total Cost: ${props.totalFare}</p>
-//   </div>
-// );
-
 class ResultPage extends React.Component {
   state = {
     hasDates: false,
@@ -167,7 +156,6 @@ class ResultPage extends React.Component {
       hasDates: true
     });
     let date1 = this.state.departure.split("-");
-    let date2 = this.state.return.split("-");
     let data = {
       lat: this.state.midpoint[1],
       long: this.state.midpoint[0]
@@ -206,8 +194,6 @@ class ResultPage extends React.Component {
         $.get(`https://developer.goibibo.com/api/search/?app_id=ad6a1a69&app_key=dcf3fe52cb4920b668f623315303b99f&format=json&source=${this.state.partner_airport}&destination=${destITACode}&dateofdeparture=${date1[0]}${date1[1]}${date1[2]}&seatingclass=E&adults=1&children=0&infants=0&counter=100`)
           .then(res => {
             let directFlights;
-            console.log(res);
-            debugger;
             for (let i = 0; i < res.data.data.onwardflights.length; i++) {
               if (res.data.data.onwardflights[i].destination === destITACode) {
                 directFlights = res.data.data.onwardflights[i]
@@ -235,8 +221,6 @@ class ResultPage extends React.Component {
         let point1 = turf.point([userLong, userLat]);
         let point2 = turf.point([partLong, partLat]);
         let midpoint = turf.midpoint(point1, point2);
-        let date1 = this.state.departure.split('-');
-        let date2 = this.state.return.split('-');
 
         this.setState({
           airport: resp.data[0][0].airport,
@@ -245,7 +229,6 @@ class ResultPage extends React.Component {
           airportB: [partLat, partLong],
           midpoint: midpoint.geometry.coordinates
         })
-        console.log(this.state);
       })
   }
 
