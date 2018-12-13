@@ -72,7 +72,6 @@ SimpleCard.propTypes = {
 
 SimpleCard = withStyles(styles)(SimpleCard);
 
-
 const ModalStyles = theme => ({
   paper: {
     position: "absolute",
@@ -96,11 +95,12 @@ class YourPartner extends React.Component {
         partnerAirport: res.data.partner_airport
       });
     });
-  }
+  };
+
   handleOpen = () => {
     this.setState({ open: true });
-   
   };
+
   handleClose = () => {
     this.setState({ open: false });
     
@@ -119,7 +119,6 @@ class YourPartner extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
     return (
       <div>
         <SimpleCard
@@ -130,7 +129,6 @@ class YourPartner extends React.Component {
           cardSubTitle={"Your Airport"}
           open={this.logout}
         />
-
         <SimpleCard
           partnerName={this.state.partnerName}
           partnerAirport={this.state.partnerAirport}
@@ -144,11 +142,10 @@ class YourPartner extends React.Component {
           aria-describedby="simple-modal-description"
           open={this.state.open}
           onClose={this.handleClose}
+          disableAutoFocus={true}
         >
         
         <PartnerUpdate onClose={this.handleClose} action={this.childHandler}/>
-        
-         
           
         </Modal>
       </div>

@@ -50,7 +50,6 @@ class App extends React.Component {
 
   getUsers = () => {
     $.get("/api/users").then(result => {
-      console.log(result.data);
       this.setState({
         userList: result.data
       })
@@ -91,7 +90,6 @@ class App extends React.Component {
                       </div>)
                 }
               </Toolbar>
-             
             </AppBar>
 
             <Switch>
