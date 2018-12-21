@@ -91,11 +91,13 @@ function AboutPage(props) {
               />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
-                Alex Watkins
+                  Alex Watkins
                 </Typography>
                 <Typography component="p">
-                  Lizards are a widespread group of squamate reptiles, with over
-                  6,000 species, ranging across all continents except Antarctica
+                  Alex lives in Atlanta with his wife Crystal. He enjoys mixing
+                  his work with his hobby during coding and that's why he is so
+                  excited to share this website with you. Getting to see others
+                  happy and getting to code gets me clsr to everyday joy!
                 </Typography>
               </CardContent>
             </CardActionArea>
